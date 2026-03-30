@@ -1,14 +1,430 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>Emma's Portfolio</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Emma Gomes | Architecture Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+
+    .glass-nav {
+      background: rgba(255, 255, 255, 0.8);
+      -webkit-backdrop-filter: blur(12px);
+      backdrop-filter: blur(12px);
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .project-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 30px rgba(15, 23, 42, 0.08);
+    }
+  </style>
 </head>
-<body>
+<body class="bg-stone-50 text-slate-900 selection:bg-stone-200">
 
-  <h1>Hello, I'm Emma 👋</h1>
-  <p>This is my portfolio website</p>
+  <!-- NAV -->
+  <nav class="fixed top-0 z-50 w-full glass-nav border-b border-stone-200/70">
+    <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+      <a href="#home" class="text-xl font-bold tracking-tight">EG.</a>
 
+      <div class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600">
+        <a href="#about" class="hover:text-slate-900 transition-colors">About</a>
+        <a href="#education" class="hover:text-slate-900 transition-colors">Education</a>
+        <a href="#projects" class="hover:text-slate-900 transition-colors">Projects</a>
+        <a href="#experience" class="hover:text-slate-900 transition-colors">Experience</a>
+        <a href="#skills" class="hover:text-slate-900 transition-colors">Skills</a>
+        <a href="#contact" class="hover:text-slate-900 transition-colors">Contact</a>
+        <a
+          href="Print_resume_2026.pdf"
+          target="_blank"
+          class="inline-flex items-center gap-2 text-slate-900 hover:opacity-70 transition-opacity"
+          aria-label="Open resume"
+          title="Open resume"
+        >
+          <i data-lucide="file-text" class="w-4 h-4"></i>
+          Resume
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section id="home" class="min-h-screen flex items-center justify-center px-6 pt-24">
+    <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-14 items-center">
+      <div class="fade-in" id="hero-content">
+        <p class="uppercase tracking-[0.3em] text-xs text-slate-500 mb-4">Architecture Portfolio</p>
+        <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight leading-tight mb-6">
+          Hi, I'm <span class="text-stone-500">Emma Gomes</span>
+        </h1>
+        <p class="text-lg md:text-xl text-slate-600 leading-relaxed max-w-xl mb-8">
+          I’m an architecture student at the University of Maryland focused on design,
+          3D modeling, and creating thoughtful spaces that support community and sustainability.
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <a href="#projects" class="px-7 py-3 bg-slate-900 text-white rounded-full font-medium hover:bg-slate-800 transition-all">
+            View My Work
+          </a>
+          <a href="#contact" class="px-7 py-3 border border-slate-300 rounded-full font-medium hover:bg-white transition-all">
+            Get in Touch
+          </a>
+        </div>
+      </div>
+
+      <div class="fade-in">
+        <div class="bg-white border border-stone-200 rounded-3xl p-8 shadow-sm">
+          <div class="grid grid-cols-2 gap-6">
+            <div>
+              <p class="text-sm text-slate-500 mb-1">Studying</p>
+              <p class="font-semibold">B.A. Architectural, 2026</p>
+            </div>
+            <div>
+              <p class="text-sm text-slate-500 mb-1">School</p>
+              <p class="font-semibold">University of Maryland</p>
+            </div>
+            <div>
+              <p class="text-sm text-slate-500 mb-1">Focus</p>
+              <p class="font-semibold">3D Modeling + Design</p>
+            </div>
+            <div>
+              <p class="text-sm text-slate-500 mb-1">Background</p>
+              <p class="font-semibold">Architecture + Art</p>
+            </div>
+          </div>
+
+          <div class="mt-8 pt-6 border-t border-stone-200">
+            <p class="text-sm text-slate-500 mb-2">Core tools</p>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1 bg-stone-100 rounded-full text-sm">Rhino</span>
+              <span class="px-3 py-1 bg-stone-100 rounded-full text-sm">SketchUp</span>
+              <span class="px-3 py-1 bg-stone-100 rounded-full text-sm">Revit</span>
+              <span class="px-3 py-1 bg-stone-100 rounded-full text-sm">AutoCAD</span>
+              <span class="px-3 py-1 bg-stone-100 rounded-full text-sm">Twinmotion</span>
+              <span class="px-3 py-1 bg-stone-100 rounded-full text-sm">Lumion</span>
+              <span class="px-3 py-1 bg-stone-100 rounded-full text-sm">Adobe Creative Suite</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <a href="#about" class="absolute bottom-8 left-1/2 -translate-x-1/2 text-slate-400 animate-bounce" aria-label="Scroll down" title="Scroll down">
+      <i data-lucide="chevron-down" class="w-8 h-8"></i>
+    </a>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="py-24 px-6 bg-white">
+    <div class="max-w-6xl mx-auto">
+      <div class="fade-in grid md:grid-cols-2 gap-12 items-start">
+        <div>
+          <p class="uppercase tracking-[0.3em] text-xs text-slate-500 mb-3">About</p>
+          <h2 class="text-3xl md:text-4xl font-bold mb-6">Designing spaces with care and purpose.</h2>
+        </div>
+
+        <div class="space-y-5 text-slate-600 leading-relaxed text-lg">
+          <p>
+            I am an architecture student eager to learn from experienced professionals in school and in the workplace.
+            I want to grow my 3D modeling skills and keep improving my design abilities.
+          </p>
+          <p>
+            My goal is to create beautiful, high-quality design solutions that contribute to better environments for people.
+            I am also interested in urban spaces that foster community and sustainability.
+          </p>
+          <p>
+            My work combines creative drawing, hand drafting, research, and digital modeling to develop thoughtful architectural ideas.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education" class="py-24 px-6 bg-stone-50">
+    <div class="max-w-6xl mx-auto fade-in">
+      <p class="uppercase tracking-[0.3em] text-xs text-slate-500 mb-3">Education</p>
+      <h2 class="text-3xl md:text-4xl font-bold mb-10">Academic background</h2>
+
+      <div class="grid md:grid-cols-2 gap-8">
+        <div class="bg-white rounded-2xl border border-stone-200 p-8 shadow-sm">
+          <p class="text-sm text-slate-500 mb-2">University of Maryland, College Park</p>
+          <h3 class="text-xl font-bold mb-2">B.A, Architectural</h3>
+          <p class="text-slate-600">Expected graduation: 2026</p>
+        </div>
+
+        <div class="bg-white rounded-2xl border border-stone-200 p-8 shadow-sm">
+          <p class="text-sm text-slate-500 mb-2">Montgomery College, Takoma Park, MD</p>
+          <h3 class="text-xl font-bold mb-2">AA, Art, Arts and Sciences, Architectural Technology</h3>
+          <p class="text-slate-600">Completed: 2023</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects" class="py-24 px-6 bg-white">
+    <div class="max-w-6xl mx-auto fade-in">
+      <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-12">
+        <div>
+          <p class="uppercase tracking-[0.3em] text-xs text-slate-500 mb-3">Projects</p>
+          <h2 class="text-3xl md:text-4xl font-bold">Selected academic work</h2>
+        </div>
+        <p class="text-slate-500">Studio and design work from architecture courses.</p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        <article class="project-card bg-stone-50 rounded-2xl border border-stone-200 p-7 transition-all">
+          <div class="flex justify-between items-start mb-5">
+            <div class="p-3 bg-white rounded-xl border border-stone-200">
+              <i data-lucide="building-2" class="w-5 h-5 text-slate-700"></i>
+            </div>
+          </div>
+          <h3 class="text-xl font-bold mb-3">Springfield Architecture Society (SAS) HQ</h3>
+          <p class="text-slate-600 leading-relaxed mb-5">
+            Developed the design through 3D modeling, hand drafting, and site analysis to respond to complex urban constraints.
+          </p>
+          <p class="text-xs uppercase tracking-[0.2em] text-slate-400">ARCH 400</p>
+        </article>
+
+        <article class="project-card bg-stone-50 rounded-2xl border border-stone-200 p-7 transition-all">
+          <div class="flex justify-between items-start mb-5">
+            <div class="p-3 bg-white rounded-xl border border-stone-200">
+              <i data-lucide="map" class="w-5 h-5 text-slate-700"></i>
+            </div>
+          </div>
+          <h3 class="text-xl font-bold mb-3">Riverwalk Plaza</h3>
+          <p class="text-slate-600 leading-relaxed mb-5">
+            Designed a flexible public space using 3D modeling and hand drafting to support walking tours, farmer’s markets, and film screenings.
+          </p>
+          <p class="text-xs uppercase tracking-[0.2em] text-slate-400">ARCH 400</p>
+        </article>
+
+        <article class="project-card bg-stone-50 rounded-2xl border border-stone-200 p-7 transition-all">
+          <div class="flex justify-between items-start mb-5">
+            <div class="p-3 bg-white rounded-xl border border-stone-200">
+              <i data-lucide="pen-tool" class="w-5 h-5 text-slate-700"></i>
+            </div>
+          </div>
+          <h3 class="text-xl font-bold mb-3">Marketplace</h3>
+          <p class="text-slate-600 leading-relaxed mb-5">
+            Created freehand analytical diagrams to communicate circulation, parti, and hierarchy concepts, along with a revised full-size study model.
+          </p>
+          <p class="text-xs uppercase tracking-[0.2em] text-slate-400">ARCH 200</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience" class="py-24 px-6 bg-stone-50">
+    <div class="max-w-6xl mx-auto fade-in">
+      <p class="uppercase tracking-[0.3em] text-xs text-slate-500 mb-3">Experience</p>
+      <h2 class="text-3xl md:text-4xl font-bold mb-10">Work experience</h2>
+
+      <div class="space-y-6">
+        <div class="bg-white rounded-2xl border border-stone-200 p-7 shadow-sm">
+          <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-3 mb-3">
+            <div>
+              <h3 class="text-xl font-bold">Student Server</h3>
+              <p class="text-slate-600">Erickson – Riderwood | Silver Spring, MD</p>
+            </div>
+            <p class="text-sm text-slate-500">06/2023 – Current</p>
+          </div>
+          <p class="text-slate-600">
+            Provided high-quality dining service and managed payment transactions for senior residents.
+          </p>
+        </div>
+
+        <div class="bg-white rounded-2xl border border-stone-200 p-7 shadow-sm">
+          <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-3 mb-3">
+            <div>
+              <h3 class="text-xl font-bold">Class Teacher</h3>
+              <p class="text-slate-600">Rock Creek Christian Academy School</p>
+            </div>
+            <p class="text-sm text-slate-500">09/2022 – 05/2023</p>
+          </div>
+          <p class="text-slate-600">
+            Provided individualized instruction and managed classroom operations.
+          </p>
+        </div>
+
+        <div class="bg-white rounded-2xl border border-stone-200 p-7 shadow-sm">
+          <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-3 mb-3">
+            <div>
+              <h3 class="text-xl font-bold">Associate</h3>
+              <p class="text-slate-600">Humanities/Academic Success Center, Montgomery College</p>
+            </div>
+            <p class="text-sm text-slate-500">01/2019 – 01/2022</p>
+          </div>
+          <p class="text-slate-600">
+            Supported academic operations through the Federal Work-Study program.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills" class="py-24 px-6 bg-white">
+    <div class="max-w-6xl mx-auto fade-in">
+      <p class="uppercase tracking-[0.3em] text-xs text-slate-500 mb-3">Skills</p>
+      <h2 class="text-3xl md:text-4xl font-bold mb-10">Tools and strengths</h2>
+
+      <div class="grid md:grid-cols-2 gap-8">
+        <div class="bg-stone-50 rounded-2xl border border-stone-200 p-8">
+          <h3 class="font-bold text-lg mb-5">Technical proficiency</h3>
+          <div class="flex flex-wrap gap-3">
+            <span class="px-3 py-2 bg-white rounded-full border border-stone-200 text-sm">Rhino</span>
+            <span class="px-3 py-2 bg-white rounded-full border border-stone-200 text-sm">SketchUp</span>
+            <span class="px-3 py-2 bg-white rounded-full border border-stone-200 text-sm">Revit</span>
+            <span class="px-3 py-2 bg-white rounded-full border border-stone-200 text-sm">AutoCAD</span>
+            <span class="px-3 py-2 bg-white rounded-full border border-stone-200 text-sm">Adobe Creative Suite</span>
+            <span class="px-3 py-2 bg-white rounded-full border border-stone-200 text-sm">Twinmotion</span>
+            <span class="px-3 py-2 bg-white rounded-full border border-stone-200 text-sm">Lumion</span>
+            <span class="px-3 py-2 bg-white rounded-full border border-stone-200 text-sm">Hand Drafting</span>
+            <span class="px-3 py-2 bg-white rounded-full border border-stone-200 text-sm">Creative Drawing</span>
+          </div>
+        </div>
+
+        <div class="bg-stone-50 rounded-2xl border border-stone-200 p-8">
+          <h3 class="font-bold text-lg mb-5">Professional strengths</h3>
+          <div class="flex flex-wrap gap-3">
+            <span class="px-3 py-2 bg-white rounded-full border border-stone-200 text-sm">Time Management</span>
+            <span class="px-3 py-2 bg-white rounded-full border border-stone-200 text-sm">Adaptability</span>
+            <span class="px-3 py-2 bg-white rounded-full border border-stone-200 text-sm">Project Management</span>
+            <span class="px-3 py-2 bg-white rounded-full border border-stone-200 text-sm">Academic Writing</span>
+            <span class="px-3 py-2 bg-white rounded-full border border-stone-200 text-sm">Research</span>
+            <span class="px-3 py-2 bg-white rounded-full border border-stone-200 text-sm">Critical Thinking</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXHIBITIONS -->
+  <section class="py-24 px-6 bg-stone-50">
+    <div class="max-w-6xl mx-auto fade-in">
+      <p class="uppercase tracking-[0.3em] text-xs text-slate-500 mb-3">Art & Exhibitions</p>
+      <h2 class="text-3xl md:text-4xl font-bold mb-10">Creative work</h2>
+
+      <div class="bg-white rounded-2xl border border-stone-200 p-8 shadow-sm">
+        <div class="grid md:grid-cols-2 gap-4 text-slate-600">
+          <p>5th Tone International Miniature Art Biennale 2015</p>
+          <p>A Thousand Tales</p>
+          <p>A Thousand Tales: Second Group</p>
+          <p>A Thousand Tales: Third Group</p>
+          <p>Art for Cause</p>
+          <p>Portfolio</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="py-24 px-6 bg-slate-900 text-white">
+    <div class="max-w-5xl mx-auto text-center fade-in">
+      <p class="uppercase tracking-[0.3em] text-xs text-slate-400 mb-3">Contact</p>
+      <h2 class="text-4xl md:text-5xl font-bold mb-6">Let’s connect.</h2>
+      <p class="text-slate-400 text-lg md:text-xl mb-10 max-w-2xl mx-auto">
+        I’m interested in learning, growing, and contributing to thoughtful design work.
+        Feel free to reach out.
+      </p>
+
+      <div class="flex flex-col items-center gap-5 mb-10">
+        <a
+          href="mailto:egomes13@terpmail.umd.edu"
+          class="inline-flex items-center gap-3 text-lg hover:text-stone-200 transition-colors"
+        >
+          <div class="w-12 h-12 rounded-full border border-slate-700 flex items-center justify-center">
+            <i data-lucide="mail" class="w-5 h-5"></i>
+          </div>
+          egomes13@terpmail.umd.edu
+        </a>
+
+        <a
+          href="tel:+12407191039"
+          class="inline-flex items-center gap-3 text-lg hover:text-stone-200 transition-colors"
+        >
+          <div class="w-12 h-12 rounded-full border border-slate-700 flex items-center justify-center">
+            <i data-lucide="phone" class="w-5 h-5"></i>
+          </div>
+          (240) 719-1039
+        </a>
+      </div>
+
+      <div class="flex justify-center gap-6">
+        <a 
+        href="https://github.com/emmagomes95"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="GitHub profile"
+        title="GitHub profile"
+        >
+          <i data-lucide="github" class="w-5 h-5"></i>
+        </a>
+
+        <a
+          href="#"
+          aria-label="LinkedIn profile"
+          title="LinkedIn profile"
+          class="w-12 h-12 rounded-full border border-slate-700 flex items-center justify-center hover:bg-white hover:text-slate-900 transition-all"
+        >
+          <i data-lucide="linkedin" class="w-5 h-5"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="py-10 px-6 border-t border-stone-200 bg-white">
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-slate-500">
+      <p>© 2026 Emma Gomes. All rights reserved.</p>
+      <div class="flex gap-6">
+        <a href="#about" class="hover:text-slate-900 transition-colors">About</a>
+        <a href="#projects" class="hover:text-slate-900 transition-colors">Projects</a>
+        <a href="#contact" class="hover:text-slate-900 transition-colors">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    lucide.createIcons();
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-in').forEach((el) => {
+      observer.observe(el);
+    });
+
+    setTimeout(() => {
+      const hero = document.getElementById('hero-content');
+      if (hero) hero.classList.add('visible');
+    }, 100);
+  </script>
 </body>
 </html>
