@@ -49,7 +49,7 @@
   <!-- ─── HERO ─── -->
   <section class="hero" id="home" aria-label="Hero section">
     <div class="hero__bg">
-      <div class="hero__bg-img" style="background-image:url('assets/img_3.jpg')" aria-hidden="true"></div>
+      <div class="hero__bg-img" style="background-image:url('assets/cover_Picture.jpg')" aria-hidden="true"></div>
       <div class="hero__overlay" aria-hidden="true"></div>
     </div>
 
@@ -79,6 +79,9 @@
         <h2 class="section-title reveal-left" style="--delay:0.08s">
           Designing spaces<br /><em>with care.</em>
         </h2>
+        <div class="about__photo-container reveal-up" style="--delay:0.1s; margin-top: 3rem; border-radius: 1.25rem; overflow: hidden;">
+          <img id="about-photo" src="assets/pictures_6.jpg" alt="Emma Gomes" style="width: 100%; display: block; aspect-ratio: 4/5; object-fit: cover;" loading="lazy" />
+        </div>
       </div>
       <div class="about__right">
         <p class="about__body reveal-up" style="--delay:0.12s">
@@ -114,97 +117,191 @@
     </div>
   </section>
 
-  <!-- ─── WORK / IMAGE SHOWCASE (cinematic scroll) ─── -->
-  <section class="work" id="work" aria-label="Selected work">
-    <div class="work__intro container">
-      <span class="label reveal-left">Selected Work</span>
-      <h2 class="section-title reveal-left" style="--delay:0.08s">
-        Studio & design<br /><em>projects.</em>
-      </h2>
+  <!-- ─── WORK / IMAGE GRID ─── -->
+  <section class="work section" id="work" aria-label="Selected work">
+    <div class="container">
+      <div class="work__intro">
+        <span class="label reveal-left">Selected Work</span>
+        <h2 class="section-title reveal-left" style="--delay:0.08s">
+          Studio &amp; design<br /><em>projects.</em>
+        </h2>
+      </div>
+
+      <!-- Grid: 2 per row, each row animates from left + right -->
+      <div class="work__grid" id="workGrid">
+
+        <!-- Row 1 -->
+        <article class="work-card slide-left" data-modal="0"
+          data-title="Springfield Architecture Society HQ"
+          data-course="ARCH 400"
+          data-tag="Facade Study"
+          data-img="assets/img_1.jpg"
+          data-desc="Biophilic facade study exploring the intersection of organic form and high-density urban living. The design draws inspiration from ancient forest structures, translating natural bark textures and organic growth patterns into a functional 10-story residential tower. Developed through iterative 3D modeling in Rhino, hand drafting, and extensive site analysis to respond to complex urban constraints."
+          aria-label="View Springfield Architecture Society HQ project"
+          role="button" tabindex="0">
+          <div class="work-card__img-wrap">
+            <img src="assets/img_1.jpg" alt="Biophilic high-rise towers with tree-bark facade" class="work-card__img" loading="lazy" />
+            <div class="work-card__overlay" aria-hidden="true">
+              <span class="work-card__arrow" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+                  <path d="M5 17L17 5M17 5H7M17 5V15" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </div>
+          </div>
+          <div class="work-card__info">
+            <span class="work-card__num">01</span>
+            <h3 class="work-card__title">Springfield Architecture Society HQ</h3>
+            <span class="work-card__course">ARCH 400</span>
+          </div>
+        </article>
+
+        <article class="work-card slide-right" data-modal="1"
+          data-title="Riverwalk Pavilion"
+          data-course="ARCH 400"
+          data-tag="Parametric Structure"
+          data-img="assets/img_2.jpg"
+          data-desc="A parametric wooden vault designed as a flexible public amenity space. The interlocking arch system draws from Gothic vaulting and contemporary computational design, creating a warm, light-filled shelter that adapts to multiple programs — including walking tours, weekly farmer's markets, outdoor film screenings, and community gatherings. Engineered in collaboration with structural consultants using SketchUp and Rhino."
+          aria-label="View Riverwalk Pavilion project"
+          role="button" tabindex="0">
+          <div class="work-card__img-wrap">
+            <img src="assets/img_2.jpg" alt="Parametric wooden vaulted pavilion in a misty field" class="work-card__img" loading="lazy" />
+            <div class="work-card__overlay" aria-hidden="true">
+              <span class="work-card__arrow" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+                  <path d="M5 17L17 5M17 5H7M17 5V15" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </div>
+          </div>
+          <div class="work-card__info">
+            <span class="work-card__num">02</span>
+            <h3 class="work-card__title">Riverwalk Pavilion</h3>
+            <span class="work-card__course">ARCH 400</span>
+          </div>
+        </article>
+
+        <!-- Row 2 -->
+        <article class="work-card slide-left" data-modal="2"
+          data-title="Community Learning Center"
+          data-course="ARCH 350"
+          data-tag="Mixed-Use Academic"
+          data-img="assets/img_3.jpg"
+          data-desc="A mixed-use academic building emphasizing transparency, greenery, and human scale. The composition layers cantilevered volumes above a transparent ground floor, creating visual porosity between interior learning spaces and the surrounding cherry blossom landscape. Designed to foster collaborative learning, the building features flexible studio spaces, seminar rooms, and a public reading garden accessible to all."
+          aria-label="View Community Learning Center project"
+          role="button" tabindex="0">
+          <div class="work-card__img-wrap">
+            <img src="assets/img_3.jpg" alt="Modern academic building with cherry blossom trees" class="work-card__img" loading="lazy" />
+            <div class="work-card__overlay" aria-hidden="true">
+              <span class="work-card__arrow" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+                  <path d="M5 17L17 5M17 5H7M17 5V15" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </div>
+          </div>
+          <div class="work-card__info">
+            <span class="work-card__num">03</span>
+            <h3 class="work-card__title">Community Learning Center</h3>
+            <span class="work-card__course">ARCH 350</span>
+          </div>
+        </article>
+
+        <article class="work-card slide-right" data-modal="3"
+          data-title="Marketplace"
+          data-course="ARCH 200"
+          data-tag="Civic / Brutalism"
+          data-img="assets/img_4.jpg"
+          data-desc="A bold civic marketplace expressed through sculptural concrete massing and brutalist language. The design interprets the promenade as a series of spatial compressions and expansions, drawing visitors through a layered sequence of outdoor market stalls, covered arcades, and elevated gathering terraces. Freehand analytical diagrams were used extensively to communicate circulation, parti, and spatial hierarchy alongside a revised study model."
+          aria-label="View Marketplace project"
+          role="button" tabindex="0">
+          <div class="work-card__img-wrap">
+            <img src="assets/img_4.jpg" alt="Brutalist sculptural civic building" class="work-card__img" loading="lazy" />
+            <div class="work-card__overlay" aria-hidden="true">
+              <span class="work-card__arrow" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+                  <path d="M5 17L17 5M17 5H7M17 5V15" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </div>
+          </div>
+          <div class="work-card__info">
+            <span class="work-card__num">04</span>
+            <h3 class="work-card__title">Marketplace</h3>
+            <span class="work-card__course">ARCH 200</span>
+          </div>
+        </article>
+
+        <!-- Row 3 — single card, centered -->
+        <article class="work-card slide-left work-card--wide" data-modal="4"
+          data-title="Reflective Urban Facade"
+          data-course="ARCH 300"
+          data-tag="Urban Skin"
+          data-img="assets/img_5.jpg"
+          data-desc="An exploration of urban transparency, reflectivity, and contextual dialogue. The glass curtain-wall skin dissolves the conventional boundary between building and sky, turning the facade into a kinetic mirror that absorbs the surrounding cityscape, weather, and light. The design questions notions of presence and absence in dense urban fabric, using high-performance glazing systems layered with orange structural fins that create depth and shadow play throughout the day."
+          aria-label="View Reflective Urban Facade project"
+          role="button" tabindex="0">
+          <div class="work-card__img-wrap">
+            <img src="assets/img_5.jpg" alt="Mirrored glass facade reflecting sky and city" class="work-card__img" loading="lazy" />
+            <div class="work-card__overlay" aria-hidden="true">
+              <span class="work-card__arrow" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+                  <path d="M5 17L17 5M17 5H7M17 5V15" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </div>
+          </div>
+          <div class="work-card__info">
+            <span class="work-card__num">05</span>
+            <h3 class="work-card__title">Reflective Urban Facade</h3>
+            <span class="work-card__course">ARCH 300</span>
+          </div>
+        </article>
+
+      </div><!-- /.work__grid -->
     </div>
-
-    <!-- Sticky scroll showcase -->
-    <div class="showcase" id="showcase">
-      <!-- Track of panels – JS drives the curtain transition -->
-      <div class="showcase__track" id="showcaseTrack">
-
-        <div class="showcase__panel" data-index="0">
-          <figure class="panel__img-wrap" aria-hidden="true">
-            <img src="assets/img_1.jpg" alt="Biophilic high-rise towers with tree-bark facade" class="panel__img" />
-          </figure>
-          <div class="panel__caption">
-            <span class="panel__num">01</span>
-            <h3 class="panel__title">Springfield Architecture Society HQ</h3>
-            <p class="panel__desc">Biophilic facade study exploring the intersection of organic form and high-density urban living. Developed through 3D modeling, hand drafting, and site analysis.</p>
-            <span class="panel__course">ARCH 400</span>
-          </div>
-        </div>
-
-        <div class="showcase__panel" data-index="1">
-          <figure class="panel__img-wrap" aria-hidden="true">
-            <img src="assets/img_2.jpg" alt="Parametric wooden vaulted pavilion in a misty field" class="panel__img" />
-          </figure>
-          <div class="panel__caption">
-            <span class="panel__num">02</span>
-            <h3 class="panel__title">Riverwalk Pavilion</h3>
-            <p class="panel__desc">Parametric wooden vault designed as a flexible public space, supporting walking tours, farmer's markets, and film screenings through lightweight structure and natural material.</p>
-            <span class="panel__course">ARCH 400</span>
-          </div>
-        </div>
-
-        <div class="showcase__panel" data-index="2">
-          <figure class="panel__img-wrap" aria-hidden="true">
-            <img src="assets/img_3.jpg" alt="Modern academic building with cherry blossom trees" class="panel__img" />
-          </figure>
-          <div class="panel__caption">
-            <span class="panel__num">03</span>
-            <h3 class="panel__title">Community Learning Center</h3>
-            <p class="panel__desc">Mixed-use academic building emphasizing transparency, greenery, and human scale. Designed to foster collaborative learning in a vibrant landscaped setting.</p>
-            <span class="panel__course">ARCH 350</span>
-          </div>
-        </div>
-
-        <div class="showcase__panel" data-index="3">
-          <figure class="panel__img-wrap" aria-hidden="true">
-            <img src="assets/img_4.jpg" alt="Brutalist sculptural civic building" class="panel__img" />
-          </figure>
-          <div class="panel__caption">
-            <span class="panel__num">04</span>
-            <h3 class="panel__title">Marketplace</h3>
-            <p class="panel__desc">Brutalist civic presence articulated through bold massing and sculptural concrete. Analytical diagrams communicate circulation, parti, and hierarchy through freehand and digital methods.</p>
-            <span class="panel__course">ARCH 200</span>
-          </div>
-        </div>
-
-        <div class="showcase__panel" data-index="4">
-          <figure class="panel__img-wrap" aria-hidden="true">
-            <img src="assets/img_5.jpg" alt="Mirrored glass facade reflecting sky and city" class="panel__img" />
-          </figure>
-          <div class="panel__caption">
-            <span class="panel__num">05</span>
-            <h3 class="panel__title">Reflective Urban Facade</h3>
-            <p class="panel__desc">Exploration of urban transparency and context — a glass skin that dissolves the boundary between building and sky, turning the city into an ever-changing canvas.</p>
-            <span class="panel__course">ARCH 300</span>
-          </div>
-        </div>
-
-      </div><!-- /.showcase__track -->
-
-      <!-- Progress dots -->
-      <div class="showcase__dots" id="showcaseDots" role="tablist" aria-label="Project navigation">
-        <button class="dot dot--active" data-idx="0" role="tab" aria-selected="true" aria-label="Project 1"></button>
-        <button class="dot" data-idx="1" role="tab" aria-selected="false" aria-label="Project 2"></button>
-        <button class="dot" data-idx="2" role="tab" aria-selected="false" aria-label="Project 3"></button>
-        <button class="dot" data-idx="3" role="tab" aria-selected="false" aria-label="Project 4"></button>
-        <button class="dot" data-idx="4" role="tab" aria-selected="false" aria-label="Project 5"></button>
-      </div>
-
-      <!-- Scroll progress bar -->
-      <div class="showcase__progress" aria-hidden="true">
-        <div class="showcase__progress-fill" id="showcaseProgressFill"></div>
-      </div>
-    </div><!-- /.showcase -->
   </section>
+
+  <!-- ─── PROJECT MODAL ─── -->
+  <div class="modal" id="projectModal" aria-modal="true" role="dialog" aria-label="Project detail" aria-hidden="true">
+    <div class="modal__backdrop" id="modalBackdrop"></div>
+    <div class="modal__panel">
+      <button class="modal__close" id="modalClose" aria-label="Close project detail">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+          <path d="M4 4L16 16M16 4L4 16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+      </button>
+
+      <div class="modal__img-wrap">
+        <img id="modalImg" src="" alt="" class="modal__img" />
+      </div>
+
+      <div class="modal__body">
+        <div class="modal__meta">
+          <span class="modal__tag" id="modalTag"></span>
+          <span class="modal__course" id="modalCourse"></span>
+        </div>
+        <h2 class="modal__title" id="modalTitle"></h2>
+        <p class="modal__desc" id="modalDesc"></p>
+
+        <div class="modal__nav">
+          <button class="modal__nav-btn" id="modalPrev" aria-label="Previous project">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M10 3L5 8L10 13" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Prev
+          </button>
+          <span class="modal__counter" id="modalCounter">1 / 5</span>
+          <button class="modal__nav-btn modal__nav-btn--next" id="modalNext" aria-label="Next project">
+            Next
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M6 3L11 8L6 13" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div><!-- /.modal -->
 
   <!-- ─── EDUCATION ─── -->
   <section class="edu section" id="education" aria-label="Education">

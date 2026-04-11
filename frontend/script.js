@@ -19,7 +19,6 @@ if (window.matchMedia('(hover: hover)').matches && cursor) {
   });
 
   function animateCursor() {
-    // Lerp for smooth follow
     cx += (mx - cx) * 0.18;
     cy += (my - cy) * 0.18;
     cursor.style.transform = `translate(${cx}px, ${cy}px) translate(-50%,-50%)`;
@@ -27,18 +26,18 @@ if (window.matchMedia('(hover: hover)').matches && cursor) {
   }
   animateCursor();
 
-  document.querySelectorAll('a, button, .pill, .edu__card').forEach(el => {
+  document.querySelectorAll('a, button, .work-card, .pill, .edu__card').forEach(el => {
     el.addEventListener('mouseenter', () => cursor.classList.add('cursor--hover'));
     el.addEventListener('mouseleave', () => cursor.classList.remove('cursor--hover'));
   });
 }
 
 /* ══════════════════════════════
-   2. NAV scroll behaviour
+   2. NAV SCROLL BEHAVIOUR
 ══════════════════════════════ */
-const nav       = document.getElementById('nav');
+const nav = document.getElementById('nav');
 const hamburger = document.getElementById('navHamburger');
-const drawer    = document.getElementById('navDrawer');
+const drawer = document.getElementById('navDrawer');
 
 window.addEventListener('scroll', () => {
   nav.classList.toggle('nav--scrolled', window.scrollY > 40);
@@ -51,7 +50,6 @@ hamburger.addEventListener('click', () => {
   drawer.setAttribute('aria-hidden', !isOpen);
 });
 
-// Close drawer on link click
 drawer.querySelectorAll('a').forEach(a => {
   a.addEventListener('click', () => {
     hamburger.classList.remove('open');
@@ -62,11 +60,11 @@ drawer.querySelectorAll('a').forEach(a => {
 });
 
 /* ══════════════════════════════
-   3. SCROLL-REVEAL (IntersectionObserver)
+   3. GENERAL SCROLL REVEALS (.reveal-up / .reveal-left)
 ══════════════════════════════ */
 const revealEls = document.querySelectorAll('.reveal-up, .reveal-left');
 
-const revealObserver = new IntersectionObserver((entries) => {
+const revealObserver = new IntersectionObserver(entries => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       entry.target.classList.add('in');
@@ -78,129 +76,213 @@ const revealObserver = new IntersectionObserver((entries) => {
 revealEls.forEach(el => revealObserver.observe(el));
 
 /* ══════════════════════════════
-   4. SHOWCASE — scroll-driven IMAGE TRANSITIONS
+   4. WORK CARDS — PAIR SLIDE IN (LEFT + RIGHT)
+   Rows of 2 slide in together from opposite sides.
 ══════════════════════════════ */
-const showcase     = document.getElementById('showcase');
-const panels       = Array.from(document.querySelectorAll('.showcase__panel'));
-const dots         = Array.from(document.querySelectorAll('.dot'));
-const progressFill = document.getElementById('showcaseProgressFill');
+const workCards = document.querySelectorAll('.work-card');
 
-const TOTAL        = panels.length;
-let   activeIndex  = 0;
+const pairObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const card = entry.target;
+      card.classList.add('in');
 
-function activatePanel(idx) {
-  if (idx === activeIndex && panels[idx].classList.contains('active')) return;
+      // Animate right-side partner at the same time
+      const parent = card.parentElement;
+      const siblings = Array.from(parent.children);
+      const idx = siblings.indexOf(card);
 
-  panels.forEach((p, i) => {
-    p.classList.remove('active', 'prev');
-    if (i === activeIndex && i !== idx) p.classList.add('prev');
+      if (card.classList.contains('slide-left') && !card.classList.contains('work-card--wide')) {
+        const rightPartner = siblings[idx + 1];
+        if (rightPartner && rightPartner.classList.contains('slide-right')) {
+          setTimeout(() => rightPartner.classList.add('in'), 120);
+        }
+      }
+
+      pairObserver.unobserve(card);
+    }
   });
+}, { threshold: 0.05, rootMargin: '0px 0px -60px 0px' });
 
-  dots.forEach((d, i) => {
-    const isActive = i === idx;
-    d.classList.toggle('dot--active', isActive);
-    d.setAttribute('aria-selected', isActive);
-  });
-
-  activeIndex = idx;
-  panels[idx].classList.add('active');
-}
-
-// Initial state
-activatePanel(0);
-
-function onScroll() {
-  if (!showcase) return;
-  const rect     = showcase.getBoundingClientRect();
-  const total_h  = showcase.offsetHeight - window.innerHeight;
-  const scrolled = Math.max(0, -rect.top);
-  const progress = Math.min(1, scrolled / total_h);
-
-  // Drive progress bar
-  if (progressFill) progressFill.style.width = (progress * 100) + '%';
-
-  // Which panel?
-  const raw = progress * TOTAL;
-  const idx = Math.min(TOTAL - 1, Math.floor(raw));
-  activatePanel(idx);
-}
-
-window.addEventListener('scroll', onScroll, { passive: true });
-onScroll(); // run once on load
-
-// Dot click: scroll to that panel position
-dots.forEach((dot, idx) => {
-  dot.addEventListener('click', () => {
-    const rect     = showcase.getBoundingClientRect();
-    const total_h  = showcase.offsetHeight - window.innerHeight;
-    const targetY  = showcase.offsetTop + (idx / TOTAL) * total_h;
-    window.scrollTo({ top: targetY, behavior: 'smooth' });
-  });
-});
+workCards.forEach(card => pairObserver.observe(card));
 
 /* ══════════════════════════════
-   5. KEYBOARD NAV in showcase
+   5. PROJECT MODAL
 ══════════════════════════════ */
+const modal = document.getElementById('projectModal');
+const modalImg = document.getElementById('modalImg');
+const modalTitle = document.getElementById('modalTitle');
+const modalDesc = document.getElementById('modalDesc');
+const modalTag = document.getElementById('modalTag');
+const modalCourse = document.getElementById('modalCourse');
+const modalCounter = document.getElementById('modalCounter');
+const modalClose = document.getElementById('modalClose');
+const modalBackdrop = document.getElementById('modalBackdrop');
+const modalPrev = document.getElementById('modalPrev');
+const modalNext = document.getElementById('modalNext');
+
+// Collect all card data in order
+const projectData = Array.from(document.querySelectorAll('.work-card')).map(card => ({
+  img: card.dataset.img,
+  title: card.dataset.title,
+  desc: card.dataset.desc,
+  tag: card.dataset.tag,
+  course: card.dataset.course,
+  alt: card.querySelector('.work-card__img')?.alt || ''
+}));
+
+let currentIdx = 0;
+
+function openModal(idx) {
+  currentIdx = idx;
+  populateModal(idx);
+  modal.classList.add('open');
+  modal.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
+  modalClose.focus();
+}
+
+function closeModal() {
+  modal.classList.remove('open');
+  modal.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
+}
+
+function populateModal(idx) {
+  const p = projectData[idx];
+  if (!p) return;
+
+  // Fade image swap
+  modalImg.style.opacity = '0';
+  setTimeout(() => {
+    modalImg.src = p.img;
+    modalImg.alt = p.alt;
+    modalImg.style.opacity = '1';
+    modalImg.style.transition = 'opacity 0.3s';
+  }, 150);
+
+  modalTitle.textContent = p.title;
+  modalDesc.textContent = p.desc;
+  modalTag.textContent = p.tag;
+  modalCourse.textContent = p.course;
+  modalCounter.textContent = `${idx + 1} / ${projectData.length}`;
+
+  modalPrev.disabled = idx === 0;
+  modalNext.disabled = idx === projectData.length - 1;
+  modalPrev.style.opacity = idx === 0 ? '0.35' : '1';
+  modalNext.style.opacity = idx === projectData.length - 1 ? '0.35' : '1';
+}
+
+// ── EVENT DELEGATION on the grid (works even before reveal animation) ──
+const workGrid = document.getElementById('workGrid');
+if (workGrid) {
+  workGrid.addEventListener('click', e => {
+    const card = e.target.closest('.work-card');
+    if (!card) return;
+    const idx = Array.from(workCards).indexOf(card);
+    if (idx !== -1) openModal(idx);
+  });
+
+  workGrid.addEventListener('keydown', e => {
+    if (e.key !== 'Enter' && e.key !== ' ') return;
+    const card = e.target.closest('.work-card');
+    if (!card) return;
+    e.preventDefault();
+    const idx = Array.from(workCards).indexOf(card);
+    if (idx !== -1) openModal(idx);
+  });
+}
+
+// Close
+modalClose.addEventListener('click', closeModal);
+modalBackdrop.addEventListener('click', closeModal);
+
+// Prev / Next
+modalPrev.addEventListener('click', () => {
+  if (currentIdx > 0) { currentIdx--; populateModal(currentIdx); }
+});
+modalNext.addEventListener('click', () => {
+  if (currentIdx < projectData.length - 1) { currentIdx++; populateModal(currentIdx); }
+});
+
+// Keyboard navigation inside modal
 document.addEventListener('keydown', e => {
-  // Only trigger when showcase is in viewport
-  const rect = showcase.getBoundingClientRect();
-  const inView = rect.top < window.innerHeight && rect.bottom > 0;
-  if (!inView) return;
-
-  if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
-    dots[Math.min(activeIndex + 1, TOTAL - 1)]?.click();
-    e.preventDefault();
-  }
-  if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
-    dots[Math.max(activeIndex - 1, 0)]?.click();
-    e.preventDefault();
-  }
+  if (!modal.classList.contains('open')) return;
+  if (e.key === 'Escape') closeModal();
+  if (e.key === 'ArrowLeft') { if (currentIdx > 0) { currentIdx--; populateModal(currentIdx); } }
+  if (e.key === 'ArrowRight') { if (currentIdx < projectData.length - 1) { currentIdx++; populateModal(currentIdx); } }
 });
 
 /* ══════════════════════════════
-   6. TOUCH SWIPE for showcase
-══════════════════════════════ */
-let touchStartY = null;
-
-showcase.addEventListener('touchstart', e => {
-  touchStartY = e.touches[0].clientY;
-}, { passive: true });
-
-showcase.addEventListener('touchend', e => {
-  if (touchStartY === null) return;
-  const diff = touchStartY - e.changedTouches[0].clientY;
-  if (Math.abs(diff) > 40) {
-    const next = diff > 0
-      ? Math.min(activeIndex + 1, TOTAL - 1)
-      : Math.max(activeIndex - 1, 0);
-    dots[next]?.click();
-  }
-  touchStartY = null;
-}, { passive: true });
-
-/* ══════════════════════════════
-   7. PARALLAX on hero image
+   6. PARALLAX ON HERO IMAGE
 ══════════════════════════════ */
 const heroBgImg = document.querySelector('.hero__bg-img');
 
 function heroParallax() {
   if (!heroBgImg) return;
   const scrollY = window.scrollY;
-  const heroH   = document.querySelector('.hero')?.offsetHeight || 0;
+  const heroH = document.querySelector('.hero')?.offsetHeight || 0;
   if (scrollY < heroH) {
     heroBgImg.style.transform = `scale(1) translateY(${scrollY * 0.28}px)`;
   }
 }
-
 window.addEventListener('scroll', heroParallax, { passive: true });
 
 /* ══════════════════════════════
-   8. Active nav link highlight
+   7. ABOUT PHOTO TRANSITION
+══════════════════════════════ */
+const aboutSection = document.getElementById('about');
+const aboutPhoto = document.getElementById('about-photo');
+
+// Preload images to prevent flickering
+const aboutPics = [];
+for (let i = 1; i <= 6; i++) {
+  const img = new Image();
+  img.src = `assets/pictures_${i}.jpg`;
+  aboutPics.push(img);
+}
+
+if (aboutSection && aboutPhoto) {
+  window.addEventListener('scroll', () => {
+    const rect = aboutSection.getBoundingClientRect();
+    const windowHeight = window.innerHeight;
+
+    // The point where the about section is fully placed at the top (under nav)
+    const peakTop = 130;
+    let progress = 0;
+
+    if (rect.top >= peakTop) {
+      // 1. Entering phase: scrolling until the section hits the peak
+      // It will transition from 6 to 1
+      const start = windowHeight * 0.75;
+      progress = (start - rect.top) / (start - peakTop);
+    } else {
+      // 2. Leaving phase: scrolling further down past the peak
+      // It will transition from 1 back down to 6
+      const end = peakTop - (windowHeight * 0.65);
+      progress = (rect.top - end) / (peakTop - end);
+    }
+
+    // restrict to 0 - 1
+    progress = Math.max(0, Math.min(1, progress));
+
+    // progress=0 gives picNum 6
+    // progress=1 gives picNum 1
+    let index = Math.floor(progress * 5.999);
+    let picNum = 6 - index;
+    picNum = Math.max(1, Math.min(6, picNum));
+
+    aboutPhoto.src = `assets/pictures_${picNum}.jpg`;
+  }, { passive: true });
+}
+
+/* ══════════════════════════════
+   8. ACTIVE NAV LINK HIGHLIGHT
 ══════════════════════════════ */
 const sections = document.querySelectorAll('section[id]');
 const navLinks = document.querySelectorAll('.nav__links a[href^="#"]');
 
-const sectionObserver = new IntersectionObserver((entries) => {
+const sectionObserver = new IntersectionObserver(entries => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       const id = entry.target.getAttribute('id');
