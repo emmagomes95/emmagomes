@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Emma Gomes | Architecture Portfolio</title>
+  <meta name="description" content="Emma Gomes — Architecture student at the University of Maryland. Portfolio of design, 3D modeling, and thoughtful spatial work." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ─── CURSOR DOT ─── -->
+  <div class="cursor" id="cursor"></div>
+
+  <!-- ─── NAV ─── -->
+  <nav class="nav" id="nav" role="navigation" aria-label="Main navigation">
+    <a href="#home" class="nav__logo" aria-label="Emma Gomes home">EG.</a>
+    <ul class="nav__links" role="list">
+      <li><a href="#about">About</a></li>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li>
+        <a href="../Print_resume_2026.pdf" target="_blank" rel="noopener" class="nav__resume" aria-label="Open resume PDF">
+          <span>Resume</span>
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+            <path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </li>
+    </ul>
+    <button class="nav__hamburger" id="navHamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- Mobile drawer -->
+  <div class="nav__drawer" id="navDrawer" aria-hidden="true">
+    <a href="#about" class="drawer__link">About</a>
+    <a href="#work" class="drawer__link">Work</a>
+    <a href="#skills" class="drawer__link">Skills</a>
+    <a href="#contact" class="drawer__link">Contact</a>
+    <a href="../Print_resume_2026.pdf" target="_blank" rel="noopener" class="drawer__link">Resume ↗</a>
+  </div>
+
+  <!-- ─── HERO ─── -->
+  <section class="hero" id="home" aria-label="Hero section">
+    <div class="hero__bg">
+      <div class="hero__bg-img" style="background-image:url('assets/img_3.jpg')" aria-hidden="true"></div>
+      <div class="hero__overlay" aria-hidden="true"></div>
+    </div>
+
+    <div class="hero__content">
+      <p class="hero__eyebrow reveal-up" aria-label="Architecture Portfolio">Architecture Portfolio</p>
+      <h1 class="hero__name reveal-up" style="--delay:0.1s">Emma<br /><em>Gomes</em></h1>
+      <p class="hero__sub reveal-up" style="--delay:0.22s">
+        B.A. Architecture · University of Maryland · Class of 2026
+      </p>
+      <div class="hero__ctas reveal-up" style="--delay:0.34s">
+        <a href="#work" class="btn btn--light" id="heroViewWork">View Work</a>
+        <a href="#contact" class="btn btn--ghost" id="heroContact">Get in Touch</a>
+      </div>
+    </div>
+
+    <a href="#about" class="hero__scroll" aria-label="Scroll to About">
+      <span class="hero__scroll-label">Scroll</span>
+      <span class="hero__scroll-line" aria-hidden="true"></span>
+    </a>
+  </section>
+
+  <!-- ─── ABOUT ─── -->
+  <section class="about section" id="about" aria-label="About Emma Gomes">
+    <div class="container about__grid">
+      <div class="about__left">
+        <span class="label reveal-left">About</span>
+        <h2 class="section-title reveal-left" style="--delay:0.08s">
+          Designing spaces<br /><em>with care.</em>
+        </h2>
+      </div>
+      <div class="about__right">
+        <p class="about__body reveal-up" style="--delay:0.12s">
+          I am an architecture student eager to learn from experienced professionals
+          in school and in the workplace. I want to grow my 3D modeling skills and
+          keep improving my design abilities.
+        </p>
+        <p class="about__body reveal-up" style="--delay:0.2s">
+          My goal is to create beautiful, high-quality design solutions that contribute
+          to better environments for people. I am deeply interested in urban spaces
+          that foster community and sustainability.
+        </p>
+        <p class="about__body reveal-up" style="--delay:0.28s">
+          My work combines creative drawing, hand drafting, research, and digital
+          modeling to develop thoughtful architectural ideas.
+        </p>
+
+        <div class="about__facts reveal-up" style="--delay:0.38s">
+          <div class="fact">
+            <span class="fact__num">2026</span>
+            <span class="fact__label">Expected Graduation</span>
+          </div>
+          <div class="fact">
+            <span class="fact__num">UMD</span>
+            <span class="fact__label">University of Maryland</span>
+          </div>
+          <div class="fact">
+            <span class="fact__num">5+</span>
+            <span class="fact__label">Exhibitions</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── WORK / IMAGE SHOWCASE (cinematic scroll) ─── -->
+  <section class="work" id="work" aria-label="Selected work">
+    <div class="work__intro container">
+      <span class="label reveal-left">Selected Work</span>
+      <h2 class="section-title reveal-left" style="--delay:0.08s">
+        Studio & design<br /><em>projects.</em>
+      </h2>
+    </div>
+
+    <!-- Sticky scroll showcase -->
+    <div class="showcase" id="showcase">
+      <!-- Track of panels – JS drives the curtain transition -->
+      <div class="showcase__track" id="showcaseTrack">
+
+        <div class="showcase__panel" data-index="0">
+          <figure class="panel__img-wrap" aria-hidden="true">
+            <img src="assets/img_1.jpg" alt="Biophilic high-rise towers with tree-bark facade" class="panel__img" />
+          </figure>
+          <div class="panel__caption">
+            <span class="panel__num">01</span>
+            <h3 class="panel__title">Springfield Architecture Society HQ</h3>
+            <p class="panel__desc">Biophilic facade study exploring the intersection of organic form and high-density urban living. Developed through 3D modeling, hand drafting, and site analysis.</p>
+            <span class="panel__course">ARCH 400</span>
+          </div>
+        </div>
+
+        <div class="showcase__panel" data-index="1">
+          <figure class="panel__img-wrap" aria-hidden="true">
+            <img src="assets/img_2.jpg" alt="Parametric wooden vaulted pavilion in a misty field" class="panel__img" />
+          </figure>
+          <div class="panel__caption">
+            <span class="panel__num">02</span>
+            <h3 class="panel__title">Riverwalk Pavilion</h3>
+            <p class="panel__desc">Parametric wooden vault designed as a flexible public space, supporting walking tours, farmer's markets, and film screenings through lightweight structure and natural material.</p>
+            <span class="panel__course">ARCH 400</span>
+          </div>
+        </div>
+
+        <div class="showcase__panel" data-index="2">
+          <figure class="panel__img-wrap" aria-hidden="true">
+            <img src="assets/img_3.jpg" alt="Modern academic building with cherry blossom trees" class="panel__img" />
+          </figure>
+          <div class="panel__caption">
+            <span class="panel__num">03</span>
+            <h3 class="panel__title">Community Learning Center</h3>
+            <p class="panel__desc">Mixed-use academic building emphasizing transparency, greenery, and human scale. Designed to foster collaborative learning in a vibrant landscaped setting.</p>
+            <span class="panel__course">ARCH 350</span>
+          </div>
+        </div>
+
+        <div class="showcase__panel" data-index="3">
+          <figure class="panel__img-wrap" aria-hidden="true">
+            <img src="assets/img_4.jpg" alt="Brutalist sculptural civic building" class="panel__img" />
+          </figure>
+          <div class="panel__caption">
+            <span class="panel__num">04</span>
+            <h3 class="panel__title">Marketplace</h3>
+            <p class="panel__desc">Brutalist civic presence articulated through bold massing and sculptural concrete. Analytical diagrams communicate circulation, parti, and hierarchy through freehand and digital methods.</p>
+            <span class="panel__course">ARCH 200</span>
+          </div>
+        </div>
+
+        <div class="showcase__panel" data-index="4">
+          <figure class="panel__img-wrap" aria-hidden="true">
+            <img src="assets/img_5.jpg" alt="Mirrored glass facade reflecting sky and city" class="panel__img" />
+          </figure>
+          <div class="panel__caption">
+            <span class="panel__num">05</span>
+            <h3 class="panel__title">Reflective Urban Facade</h3>
+            <p class="panel__desc">Exploration of urban transparency and context — a glass skin that dissolves the boundary between building and sky, turning the city into an ever-changing canvas.</p>
+            <span class="panel__course">ARCH 300</span>
+          </div>
+        </div>
+
+      </div><!-- /.showcase__track -->
+
+      <!-- Progress dots -->
+      <div class="showcase__dots" id="showcaseDots" role="tablist" aria-label="Project navigation">
+        <button class="dot dot--active" data-idx="0" role="tab" aria-selected="true" aria-label="Project 1"></button>
+        <button class="dot" data-idx="1" role="tab" aria-selected="false" aria-label="Project 2"></button>
+        <button class="dot" data-idx="2" role="tab" aria-selected="false" aria-label="Project 3"></button>
+        <button class="dot" data-idx="3" role="tab" aria-selected="false" aria-label="Project 4"></button>
+        <button class="dot" data-idx="4" role="tab" aria-selected="false" aria-label="Project 5"></button>
+      </div>
+
+      <!-- Scroll progress bar -->
+      <div class="showcase__progress" aria-hidden="true">
+        <div class="showcase__progress-fill" id="showcaseProgressFill"></div>
+      </div>
+    </div><!-- /.showcase -->
+  </section>
+
+  <!-- ─── EDUCATION ─── -->
+  <section class="edu section" id="education" aria-label="Education">
+    <div class="container">
+      <span class="label reveal-left">Education</span>
+      <h2 class="section-title reveal-left" style="--delay:0.08s">Academic<br /><em>background.</em></h2>
+
+      <div class="edu__grid">
+        <div class="edu__card reveal-up" style="--delay:0.1s">
+          <div class="edu__card-inner">
+            <span class="edu__year">2023 – 2026</span>
+            <h3 class="edu__degree">B.A. Architectural Studies</h3>
+            <p class="edu__school">University of Maryland, College Park</p>
+          </div>
+          <div class="edu__badge" aria-hidden="true">UMD</div>
+        </div>
+
+        <div class="edu__card reveal-up" style="--delay:0.2s">
+          <div class="edu__card-inner">
+            <span class="edu__year">2019 – 2023</span>
+            <h3 class="edu__degree">A.A. Art, Architectural Technology</h3>
+            <p class="edu__school">Montgomery College, Takoma Park, MD</p>
+          </div>
+          <div class="edu__badge" aria-hidden="true">MC</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── SKILLS ─── -->
+  <section class="skills section" id="skills" aria-label="Skills">
+    <div class="container">
+      <span class="label reveal-left">Toolkit</span>
+      <h2 class="section-title reveal-left" style="--delay:0.08s">Tools &amp;<br /><em>strengths.</em></h2>
+
+      <div class="skills__grid">
+        <div class="skills__col reveal-up" style="--delay:0.1s">
+          <h3 class="skills__col-title">Software</h3>
+          <ul class="skills__list" role="list">
+            <li class="pill">Rhino</li>
+            <li class="pill">SketchUp</li>
+            <li class="pill">Revit</li>
+            <li class="pill">AutoCAD</li>
+            <li class="pill">Twinmotion</li>
+            <li class="pill">Lumion</li>
+            <li class="pill">Adobe Suite</li>
+          </ul>
+        </div>
+
+        <div class="skills__col reveal-up" style="--delay:0.18s">
+          <h3 class="skills__col-title">Craft</h3>
+          <ul class="skills__list" role="list">
+            <li class="pill">Hand Drafting</li>
+            <li class="pill">Creative Drawing</li>
+            <li class="pill">3D Modeling</li>
+            <li class="pill">Physical Models</li>
+            <li class="pill">Site Analysis</li>
+          </ul>
+        </div>
+
+        <div class="skills__col reveal-up" style="--delay:0.26s">
+          <h3 class="skills__col-title">Professional</h3>
+          <ul class="skills__list" role="list">
+            <li class="pill">Time Management</li>
+            <li class="pill">Adaptability</li>
+            <li class="pill">Project Management</li>
+            <li class="pill">Academic Writing</li>
+            <li class="pill">Research</li>
+            <li class="pill">Critical Thinking</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── EXHIBITIONS ─── -->
+  <section class="exhibitions section" id="exhibitions" aria-label="Exhibitions">
+    <div class="container">
+      <span class="label reveal-left">Art &amp; Exhibitions</span>
+      <h2 class="section-title reveal-left" style="--delay:0.08s">Creative<br /><em>recognition.</em></h2>
+
+      <ul class="exhibitions__list reveal-up" style="--delay:0.12s" role="list">
+        <li class="exhibitions__item">
+          <span class="exhibitions__dot" aria-hidden="true"></span>
+          <span>5th Tone International Miniature Art Biennale 2015</span>
+        </li>
+        <li class="exhibitions__item">
+          <span class="exhibitions__dot" aria-hidden="true"></span>
+          <span>A Thousand Tales</span>
+        </li>
+        <li class="exhibitions__item">
+          <span class="exhibitions__dot" aria-hidden="true"></span>
+          <span>A Thousand Tales: Second Group</span>
+        </li>
+        <li class="exhibitions__item">
+          <span class="exhibitions__dot" aria-hidden="true"></span>
+          <span>A Thousand Tales: Third Group</span>
+        </li>
+        <li class="exhibitions__item">
+          <span class="exhibitions__dot" aria-hidden="true"></span>
+          <span>Art for Cause</span>
+        </li>
+        <li class="exhibitions__item">
+          <span class="exhibitions__dot" aria-hidden="true"></span>
+          <span>Portfolio Exhibition</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ─── CONTACT ─── -->
+  <section class="contact" id="contact" aria-label="Contact">
+    <div class="contact__bg" aria-hidden="true"></div>
+    <div class="container contact__inner">
+      <span class="label label--light reveal-up">Contact</span>
+      <h2 class="section-title section-title--light reveal-up" style="--delay:0.08s">
+        Let's build<br /><em>something.</em>
+      </h2>
+      <p class="contact__sub reveal-up" style="--delay:0.16s">
+        I'm interested in learning, growing, and contributing to thoughtful design work. Feel free to reach out.
+      </p>
+
+      <div class="contact__links reveal-up" style="--delay:0.24s">
+        <a href="mailto:egomes13@terpmail.umd.edu" class="contact__link" id="contactEmail" aria-label="Email Emma Gomes">
+          <span class="contact__link-icon" aria-hidden="true">
+            <svg viewBox="0 0 20 20" fill="none" width="20" height="20" aria-hidden="true">
+              <path d="M2 5.5L10 11L18 5.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              <rect x="2" y="4" width="16" height="12" rx="2" stroke="currentColor" stroke-width="1.5"/>
+            </svg>
+          </span>
+          egomes13@terpmail.umd.edu
+        </a>
+
+        <a href="tel:+12407191039" class="contact__link" id="contactPhone" aria-label="Call Emma Gomes">
+          <span class="contact__link-icon" aria-hidden="true">
+            <svg viewBox="0 0 20 20" fill="none" width="20" height="20" aria-hidden="true">
+              <path d="M4 3h3l1.5 4L7 8.5a11 11 0 0 0 4.5 4.5L13 11.5l4 1.5v3a1 1 0 0 1-1 1A15 15 0 0 1 3 4a1 1 0 0 1 1-1z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          (240) 719-1039
+        </a>
+
+        <a href="https://github.com/emmagomes95" target="_blank" rel="noopener noreferrer" class="contact__link" id="contactGithub" aria-label="Emma Gomes GitHub profile">
+          <span class="contact__link-icon" aria-hidden="true">
+            <svg viewBox="0 0 20 20" fill="none" width="20" height="20" aria-hidden="true">
+              <path d="M10 2a8 8 0 0 0-2.53 15.59c.4.07.55-.17.55-.38v-1.33C5.67 16.3 5.18 14.9 5.18 14.9c-.36-.92-.88-1.17-.88-1.17-.72-.49.05-.48.05-.48.8.06 1.22.82 1.22.82.71 1.22 1.87.87 2.33.66.07-.52.28-.87.5-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82A7.64 7.64 0 0 1 10 5.9c.68 0 1.36.09 2 .27 1.52-1.03 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.28.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48v2.19c0 .21.15.46.55.38A8 8 0 0 0 10 2z" fill="currentColor"/>
+            </svg>
+          </span>
+          github.com/emmagomes95
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── FOOTER ─── -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <p class="footer__copy">© 2026 Emma Gomes. All rights reserved.</p>
+      <nav class="footer__nav" aria-label="Footer navigation">
+        <a href="#about">About</a>
+        <a href="#work">Work</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
