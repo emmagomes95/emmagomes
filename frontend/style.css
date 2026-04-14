@@ -625,6 +625,7 @@ body {
 
 /* Modal image */
 .modal__img-wrap {
+  position: relative;
   overflow: hidden;
   background: var(--warm);
 }
@@ -634,6 +635,38 @@ body {
   object-fit: cover;
   display: block;
 }
+
+/* Modal carousel buttons */
+.modal__carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  z-index: 5;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.3s, border-color 0.3s;
+}
+.modal__carousel-btn:hover {
+  background: rgba(255, 255, 255, 0.6);
+  border-color: rgba(255, 255, 255, 0.8);
+  transform: translateY(-50%) scale(1.08);
+}
+.modal__carousel-prev {
+  left: 1rem;
+}
+.modal__carousel-next {
+  right: 1rem;
+}
+
 @media (max-width: 700px) {
   .modal__img-wrap { max-height: 45vw; }
 }
@@ -684,6 +717,32 @@ body {
   color: var(--muted);
   font-weight: 300;
   flex: 1;
+}
+
+/* Modal thumbnails */
+.modal__thumbnails {
+  display: flex;
+  gap: 0.8rem;
+  margin-top: 1.5rem;
+  flex-wrap: wrap;
+}
+.modal__thumb {
+  width: 84px;
+  height: 84px;
+  border-radius: 8px;
+  object-fit: cover;
+  cursor: pointer;
+  opacity: 0.5;
+  transition: opacity 0.3s, transform 0.3s, border-color 0.3s;
+  border: 2px solid transparent;
+}
+.modal__thumb:hover {
+  opacity: 0.85;
+  transform: translateY(-2px);
+}
+.modal__thumb.active {
+  opacity: 1;
+  border-color: var(--sand);
 }
 
 /* Modal prev/next navigation */

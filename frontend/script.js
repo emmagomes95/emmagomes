@@ -124,6 +124,7 @@ const modalNext = document.getElementById('modalNext');
 // Collect all card data in order
 const projectData = Array.from(document.querySelectorAll('.work-card')).map(card => ({
   img: card.dataset.img,
+  extraImgs: card.dataset.extraImgs ? card.dataset.extraImgs.split(',') : [],
   title: card.dataset.title,
   desc: card.dataset.desc,
   tag: card.dataset.tag,
@@ -153,12 +154,84 @@ function populateModal(idx) {
   if (!p) return;
 
   // Fade image swap
-  modalImg.style.opacity = '0';
+  const imgContainer = document.querySelector('.modal__img-wrap');
+  imgContainer.style.opacity = '0';
+  imgContainer.style.overflowY = 'hidden';
+
   setTimeout(() => {
-    modalImg.src = p.img;
-    modalImg.alt = p.alt;
-    modalImg.style.opacity = '1';
-    modalImg.style.transition = 'opacity 0.3s';
+    imgContainer.innerHTML = '';
+    const thumbContainer = document.getElementById('modalThumbnails');
+    if (thumbContainer) thumbContainer.innerHTML = '';
+    
+    const allImgs = [p.img];
+    if (p.extraImgs && p.extraImgs.length > 0) {
+      allImgs.push(...p.extraImgs);
+    }
+    
+    let currentPhotoIdx = 0;
+
+    const mainImg = document.createElement('img');
+    mainImg.src = allImgs[currentPhotoIdx];
+    mainImg.alt = p.alt;
+    mainImg.className = 'modal__img';
+    mainImg.style.transition = 'opacity 0.25s ease-in-out';
+    imgContainer.appendChild(mainImg);
+    
+    function updateMainImage(idx) {
+      currentPhotoIdx = idx;
+      mainImg.style.opacity = '0';
+      setTimeout(() => {
+        mainImg.src = allImgs[currentPhotoIdx];
+        mainImg.style.opacity = '1';
+      }, 150);
+      
+      if (thumbContainer) {
+        Array.from(thumbContainer.children).forEach((thumb, i) => {
+          if (i === currentPhotoIdx) thumb.classList.add('active');
+          else thumb.classList.remove('active');
+        });
+      }
+    }
+
+    if (allImgs.length > 1) {
+      const prevBtn = document.createElement('button');
+      prevBtn.className = 'modal__carousel-btn modal__carousel-prev';
+      prevBtn.setAttribute('aria-label', 'Previous photo');
+      prevBtn.innerHTML = '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M15 18l-6-6 6-6"/></svg>';
+      
+      const nextBtn = document.createElement('button');
+      nextBtn.className = 'modal__carousel-btn modal__carousel-next';
+      nextBtn.setAttribute('aria-label', 'Next photo');
+      nextBtn.innerHTML = '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg>';
+
+      prevBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        updateMainImage((currentPhotoIdx === 0) ? allImgs.length - 1 : currentPhotoIdx - 1);
+      });
+
+      nextBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        updateMainImage((currentPhotoIdx + 1) % allImgs.length);
+      });
+
+      imgContainer.appendChild(prevBtn);
+      imgContainer.appendChild(nextBtn);
+      
+      if (thumbContainer) {
+        allImgs.forEach((src, idx) => {
+          const thumb = document.createElement('img');
+          thumb.src = src;
+          thumb.className = 'modal__thumb' + (idx === 0 ? ' active' : '');
+          thumb.addEventListener('click', () => {
+            if (currentPhotoIdx !== idx) updateMainImage(idx);
+          });
+          thumbContainer.appendChild(thumb);
+        });
+      }
+    }
+
+    imgContainer.style.opacity = '1';
+    imgContainer.style.transition = 'opacity 0.3s';
   }, 150);
 
   modalTitle.textContent = p.title;
