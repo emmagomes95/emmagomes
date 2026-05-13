@@ -1,430 +1,591 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Emma Gomes | Architecture Portfolio</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://unpkg.com/lucide@latest"></script>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: 'Inter', sans-serif;
-    }
-
-    .glass-nav {
-      background: rgba(255, 255, 255, 0.8);
-      -webkit-backdrop-filter: blur(12px);
-      backdrop-filter: blur(12px);
-    }
-
-    .fade-in {
-      opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-
-    .fade-in.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .project-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 20px 30px rgba(15, 23, 42, 0.08);
-    }
-  </style>
+  <meta name="description"
+    content="Emma Gomes — Architecture student at the University of Maryland. Portfolio of design, 3D modeling, and thoughtful spatial work." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
 </head>
-<body class="bg-stone-50 text-slate-900 selection:bg-stone-200">
 
-  <!-- NAV -->
-  <nav class="fixed top-0 z-50 w-full glass-nav border-b border-stone-200/70">
-    <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-      <a href="#home" class="text-xl font-bold tracking-tight">EG.</a>
+<body>
 
-      <div class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600">
-        <a href="#about" class="hover:text-slate-900 transition-colors">About</a>
-        <a href="#education" class="hover:text-slate-900 transition-colors">Education</a>
-        <a href="#projects" class="hover:text-slate-900 transition-colors">Projects</a>
-        <a href="#experience" class="hover:text-slate-900 transition-colors">Experience</a>
-        <a href="#skills" class="hover:text-slate-900 transition-colors">Skills</a>
-        <a href="#contact" class="hover:text-slate-900 transition-colors">Contact</a>
-        <a
-          href="Print_resume_2026.pdf"
-          target="_blank"
-          class="inline-flex items-center gap-2 text-slate-900 hover:opacity-70 transition-opacity"
-          aria-label="Open resume"
-          title="Open resume"
-        >
-          <i data-lucide="file-text" class="w-4 h-4"></i>
-          Resume
+  <!-- ─── CURSOR DOT ─── -->
+  <div class="cursor" id="cursor"></div>
+
+  <!-- ─── NAV ─── -->
+  <nav class="nav" id="nav" role="navigation" aria-label="Main navigation">
+    <a href="#home" class="nav__logo" aria-label="Emma Gomes home">EG.</a>
+    <ul class="nav__links" role="list">
+      <li><a href="#about">About</a></li>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#art">Art</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li>
+        <a href="../Print_resume_2026.pdf" target="_blank" rel="noopener" class="nav__resume"
+          aria-label="Open resume PDF">
+          <span>Resume</span>
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+            <path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg>
         </a>
-      </div>
-    </div>
+      </li>
+    </ul>
+    <button class="nav__hamburger" id="navHamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span>
+    </button>
   </nav>
 
-  <!-- HERO -->
-  <section id="home" class="min-h-screen flex items-center justify-center px-6 pt-24">
-    <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-14 items-center">
-      <div class="fade-in" id="hero-content">
-        <p class="uppercase tracking-[0.3em] text-xs text-slate-500 mb-4">Architecture Portfolio</p>
-        <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight leading-tight mb-6">
-          Hi, I'm <span class="text-stone-500">Emma Gomes</span>
-        </h1>
-        <p class="text-lg md:text-xl text-slate-600 leading-relaxed max-w-xl mb-8">
-          I’m an architecture student at the University of Maryland focused on design,
-          3D modeling, and creating thoughtful spaces that support community and sustainability.
-        </p>
-        <div class="flex flex-wrap gap-4">
-          <a href="#projects" class="px-7 py-3 bg-slate-900 text-white rounded-full font-medium hover:bg-slate-800 transition-all">
-            View My Work
-          </a>
-          <a href="#contact" class="px-7 py-3 border border-slate-300 rounded-full font-medium hover:bg-white transition-all">
-            Get in Touch
-          </a>
-        </div>
-      </div>
+  <!-- Mobile drawer -->
+  <div class="nav__drawer" id="navDrawer" aria-hidden="true">
+    <a href="#about" class="drawer__link">About</a>
+    <a href="#work" class="drawer__link">Work</a>
+    <a href="#art" class="drawer__link">Art</a>
+    <a href="#skills" class="drawer__link">Skills</a>
+    <a href="#contact" class="drawer__link">Contact</a>
+    <a href="../Print_resume_2026.pdf" target="_blank" rel="noopener" class="drawer__link">Resume ↗</a>
+  </div>
 
-      <div class="fade-in">
-        <div class="bg-white border border-stone-200 rounded-3xl p-8 shadow-sm">
-          <div class="grid grid-cols-2 gap-6">
-            <div>
-              <p class="text-sm text-slate-500 mb-1">Studying</p>
-              <p class="font-semibold">B.A. Architectural, 2026</p>
-            </div>
-            <div>
-              <p class="text-sm text-slate-500 mb-1">School</p>
-              <p class="font-semibold">University of Maryland</p>
-            </div>
-            <div>
-              <p class="text-sm text-slate-500 mb-1">Focus</p>
-              <p class="font-semibold">3D Modeling + Design</p>
-            </div>
-            <div>
-              <p class="text-sm text-slate-500 mb-1">Background</p>
-              <p class="font-semibold">Architecture + Art</p>
-            </div>
-          </div>
+  <!-- ─── HERO ─── -->
+  <section class="hero" id="home" aria-label="Hero section">
+    <div class="hero__bg">
+      <div class="hero__bg-img" style="background-image:url('assets/cover_Picture.jpg')" aria-hidden="true"></div>
+      <div class="hero__overlay" aria-hidden="true"></div>
+    </div>
 
-          <div class="mt-8 pt-6 border-t border-stone-200">
-            <p class="text-sm text-slate-500 mb-2">Core tools</p>
-            <div class="flex flex-wrap gap-2">
-              <span class="px-3 py-1 bg-stone-100 rounded-full text-sm">Rhino</span>
-              <span class="px-3 py-1 bg-stone-100 rounded-full text-sm">SketchUp</span>
-              <span class="px-3 py-1 bg-stone-100 rounded-full text-sm">Revit</span>
-              <span class="px-3 py-1 bg-stone-100 rounded-full text-sm">AutoCAD</span>
-              <span class="px-3 py-1 bg-stone-100 rounded-full text-sm">Twinmotion</span>
-              <span class="px-3 py-1 bg-stone-100 rounded-full text-sm">Lumion</span>
-              <span class="px-3 py-1 bg-stone-100 rounded-full text-sm">Adobe Creative Suite</span>
-            </div>
-          </div>
-        </div>
+    <div class="hero__content">
+      <p class="hero__eyebrow reveal-up" aria-label="Architecture Portfolio">Architecture Portfolio</p>
+      <h1 class="hero__name reveal-up" style="--delay:0.1s">Emma<br /><em>Gomes</em></h1>
+      <p class="hero__sub reveal-up" style="--delay:0.22s">
+        B.A. Architecture · University of Maryland · Class of 2026
+      </p>
+      <div class="hero__ctas reveal-up" style="--delay:0.34s">
+        <a href="#work" class="btn btn--light" id="heroViewWork">View Work</a>
+        <a href="#contact" class="btn btn--ghost" id="heroContact">Get in Touch</a>
       </div>
     </div>
 
-    <a href="#about" class="absolute bottom-8 left-1/2 -translate-x-1/2 text-slate-400 animate-bounce" aria-label="Scroll down" title="Scroll down">
-      <i data-lucide="chevron-down" class="w-8 h-8"></i>
+    <a href="#about" class="hero__scroll" aria-label="Scroll to About">
+      <span class="hero__scroll-label">Scroll</span>
+      <span class="hero__scroll-line" aria-hidden="true"></span>
     </a>
   </section>
 
-  <!-- ABOUT -->
-  <section id="about" class="py-24 px-6 bg-white">
-    <div class="max-w-6xl mx-auto">
-      <div class="fade-in grid md:grid-cols-2 gap-12 items-start">
-        <div>
-          <p class="uppercase tracking-[0.3em] text-xs text-slate-500 mb-3">About</p>
-          <h2 class="text-3xl md:text-4xl font-bold mb-6">Designing spaces with care and purpose.</h2>
+  <!-- ─── ABOUT ─── -->
+  <section class="about section" id="about" aria-label="About Emma Gomes">
+    <div class="container about__grid">
+      <div class="about__left">
+        <span class="label reveal-left">About</span>
+        <h2 class="section-title reveal-left" style="--delay:0.08s">
+          Designing spaces<br /><em>with care.</em>
+        </h2>
+        <div class="about__photo-container reveal-up"
+          style="--delay:0.1s; margin-top: 3rem; border-radius: 1.25rem; overflow: hidden;">
+          <img id="about-photo" src="assets/pictures_6.jpg" alt="Emma Gomes"
+            style="width: 100%; display: block; aspect-ratio: 4/5; object-fit: cover;" loading="lazy" />
         </div>
+      </div>
+      <div class="about__right">
+        <p class="about__body reveal-up" style="--delay:0.12s">
+          I am an architecture student eager to learn from experienced professionals
+          in school and in the workplace. I want to grow my 3D modeling skills and
+          keep improving my design abilities.
+        </p>
+        <p class="about__body reveal-up" style="--delay:0.2s">
+          My goal is to create beautiful, high-quality design solutions that contribute
+          to better environments for people. I am deeply interested in urban spaces
+          that foster community and sustainability.
+        </p>
+        <p class="about__body reveal-up" style="--delay:0.28s">
+          My work combines creative drawing, hand drafting, research, and digital
+          modeling to develop thoughtful architectural ideas.
+        </p>
 
-        <div class="space-y-5 text-slate-600 leading-relaxed text-lg">
-          <p>
-            I am an architecture student eager to learn from experienced professionals in school and in the workplace.
-            I want to grow my 3D modeling skills and keep improving my design abilities.
-          </p>
-          <p>
-            My goal is to create beautiful, high-quality design solutions that contribute to better environments for people.
-            I am also interested in urban spaces that foster community and sustainability.
-          </p>
-          <p>
-            My work combines creative drawing, hand drafting, research, and digital modeling to develop thoughtful architectural ideas.
-          </p>
+        <div class="about__facts reveal-up" style="--delay:0.38s">
+          <div class="fact">
+            <span class="fact__num">2026</span>
+            <span class="fact__label">Expected Graduation</span>
+          </div>
+          <div class="fact">
+            <span class="fact__num">UMD</span>
+            <span class="fact__label">University of Maryland</span>
+          </div>
+          <div class="fact">
+            <span class="fact__num">5+</span>
+            <span class="fact__label">Exhibitions</span>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- EDUCATION -->
-  <section id="education" class="py-24 px-6 bg-stone-50">
-    <div class="max-w-6xl mx-auto fade-in">
-      <p class="uppercase tracking-[0.3em] text-xs text-slate-500 mb-3">Education</p>
-      <h2 class="text-3xl md:text-4xl font-bold mb-10">Academic background</h2>
-
-      <div class="grid md:grid-cols-2 gap-8">
-        <div class="bg-white rounded-2xl border border-stone-200 p-8 shadow-sm">
-          <p class="text-sm text-slate-500 mb-2">University of Maryland, College Park</p>
-          <h3 class="text-xl font-bold mb-2">B.A, Architectural</h3>
-          <p class="text-slate-600">Expected graduation: 2026</p>
-        </div>
-
-        <div class="bg-white rounded-2xl border border-stone-200 p-8 shadow-sm">
-          <p class="text-sm text-slate-500 mb-2">Montgomery College, Takoma Park, MD</p>
-          <h3 class="text-xl font-bold mb-2">AA, Art, Arts and Sciences, Architectural Technology</h3>
-          <p class="text-slate-600">Completed: 2023</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PROJECTS -->
-  <section id="projects" class="py-24 px-6 bg-white">
-    <div class="max-w-6xl mx-auto fade-in">
-      <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-12">
-        <div>
-          <p class="uppercase tracking-[0.3em] text-xs text-slate-500 mb-3">Projects</p>
-          <h2 class="text-3xl md:text-4xl font-bold">Selected academic work</h2>
-        </div>
-        <p class="text-slate-500">Studio and design work from architecture courses.</p>
+  <!-- ─── WORK / IMAGE GRID ─── -->
+  <section class="work section" id="work" aria-label="Selected work">
+    <div class="container">
+      <div class="work__intro">
+        <span class="label reveal-left">Selected Work</span>
+        <h2 class="section-title reveal-left" style="--delay:0.08s">
+          Studio &amp; design<br /><em>projects.</em>
+        </h2>
       </div>
 
-      <div class="grid md:grid-cols-3 gap-8">
-        <article class="project-card bg-stone-50 rounded-2xl border border-stone-200 p-7 transition-all">
-          <div class="flex justify-between items-start mb-5">
-            <div class="p-3 bg-white rounded-xl border border-stone-200">
-              <i data-lucide="building-2" class="w-5 h-5 text-slate-700"></i>
+      <!-- Grid: 2 per row, each row animates from left + right -->
+      <div class="work__grid" id="workGrid">
+
+        <!-- Row 1 -->
+        <article class="work-card slide-left" data-modal="0" data-title="The Summer House - I.M. Pei"
+          data-course="ARCH 300" data-tag="Digital Reconstruction" data-img="assets/TheSummerHouse_cover.jpg"
+          data-extra-imgs="assets/Summer House/SummerHouse_Sitediagram.jpg,assets/Summer House/SummerHouse_plan_elevation.jpg,assets/Summer House/SummerHouse_perspective.jpg"
+          data-desc="This project involved a detailed digital reconstruction of I.M. Pei’s 1952 weekend retreat in Westchester County. A rare example of Pei’s residential work, the house serves as a bridge between the rigorous geometry of Miesian Modernism and the delicate sensibilities of traditional Chinese architecture. My analysis focused on how the &quot;Glass Box&quot; is elevated on a timber structure, creating a seamless dialogue with the surrounding hills. By modeling the large verandas and the curated garden, I explored Pei’s unique ability to blend Western functionality with an Eastern reverence for nature."
+          aria-label="View The Summer House project" role="button" tabindex="0">
+          <div class="work-card__img-wrap">
+            <img src="assets/TheSummerHouse_cover.jpg" alt="The Summer House" class="work-card__img" loading="lazy" />
+            <div class="work-card__overlay" aria-hidden="true">
+              <span class="work-card__arrow" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+                  <path d="M5 17L17 5M17 5H7M17 5V15" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </svg>
+              </span>
             </div>
           </div>
-          <h3 class="text-xl font-bold mb-3">Springfield Architecture Society (SAS) HQ</h3>
-          <p class="text-slate-600 leading-relaxed mb-5">
-            Developed the design through 3D modeling, hand drafting, and site analysis to respond to complex urban constraints.
-          </p>
-          <p class="text-xs uppercase tracking-[0.2em] text-slate-400">ARCH 400</p>
+          <div class="work-card__info">
+            <span class="work-card__num">01</span>
+            <h3 class="work-card__title">The Summer House - I.M. Pei</h3>
+            <span class="work-card__course">ARCH 300</span>
+          </div>
         </article>
 
-        <article class="project-card bg-stone-50 rounded-2xl border border-stone-200 p-7 transition-all">
-          <div class="flex justify-between items-start mb-5">
-            <div class="p-3 bg-white rounded-xl border border-stone-200">
-              <i data-lucide="map" class="w-5 h-5 text-slate-700"></i>
+        <article class="work-card slide-right" data-modal="1" data-title="Casa Gilardi - Luis Barragán 1975-1977"
+          data-course="ARCH 470" data-tag="Digital Reconstruction" data-img="assets/Casa_gilardi.jpg"
+          data-extra-imgs="assets/Casa Gilardi/CasaGilardi_sections.jpg,assets/Casa Gilardi/CasaGilardi_Perspective.jpg,assets/Casa Gilardi/CasaGilardi_plans.jpg,assets/Casa Gilardi/CasaGilardi_Diagram.jpg"
+          data-desc="This project involved a comprehensive digital reconstruction of Luis Barragán’s final masterpiece, Casa Gilardi (1975-1977). Using Revit, I modeled the intricate relationships between the home’s narrow urban footprint and its expansive interior atmosphere. The study focused on Barragán’s &quot;Emotional Architecture&quot;, specially how the integration of the central Jacaranda tree, the vibrant yellow-lit gallery, and the iconic indoor pool area create a sanctuary of privacy and light within Mexico City’s dense Tacubaya district. The final output includes detailed floor plans, sections, and axonometric views that highlight the home’s clever programmatic division between social ritual and private life."
+          aria-label="View Casa Gilardi project" role="button" tabindex="0">
+          <div class="work-card__img-wrap">
+            <img src="assets/Casa_gilardi.jpg" alt="Casa Gilardi" class="work-card__img" loading="lazy" />
+            <div class="work-card__overlay" aria-hidden="true">
+              <span class="work-card__arrow" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+                  <path d="M5 17L17 5M17 5H7M17 5V15" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </svg>
+              </span>
             </div>
           </div>
-          <h3 class="text-xl font-bold mb-3">Riverwalk Plaza</h3>
-          <p class="text-slate-600 leading-relaxed mb-5">
-            Designed a flexible public space using 3D modeling and hand drafting to support walking tours, farmer’s markets, and film screenings.
-          </p>
-          <p class="text-xs uppercase tracking-[0.2em] text-slate-400">ARCH 400</p>
+          <div class="work-card__info">
+            <span class="work-card__num">02</span>
+            <h3 class="work-card__title">Casa Gilardi - Luis Barragán</h3>
+            <span class="work-card__course">ARCH 470</span>
+          </div>
         </article>
 
-        <article class="project-card bg-stone-50 rounded-2xl border border-stone-200 p-7 transition-all">
-          <div class="flex justify-between items-start mb-5">
-            <div class="p-3 bg-white rounded-xl border border-stone-200">
-              <i data-lucide="pen-tool" class="w-5 h-5 text-slate-700"></i>
+        <!-- Row 2 -->
+        <article class="work-card slide-left" data-modal="2" data-title="Riverwalk" data-course="ARCH 400"
+          data-tag="Architecture" data-img="assets/RiverWalk_cover.jpg"
+          data-extra-imgs="assets/River Walk/RiverWalk_diagrams.jpg,assets/RiverWalk_Floor Plan.jpg"
+          data-desc="&quot;Music in Space&quot; explores the harmony between music and architecture, transforming musical elements into spatial design. The project integrates rhythm, sound, and movement, creating an interactive environment where users experience architecture both visually and acoustically."
+          aria-label="View Riverwalk project" role="button" tabindex="0">
+          <div class="work-card__img-wrap">
+            <img src="assets/RiverWalk_cover.jpg" alt="Riverwalk" class="work-card__img" loading="lazy" />
+            <div class="work-card__overlay" aria-hidden="true">
+              <span class="work-card__arrow" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+                  <path d="M5 17L17 5M17 5H7M17 5V15" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </svg>
+              </span>
             </div>
           </div>
-          <h3 class="text-xl font-bold mb-3">Marketplace</h3>
-          <p class="text-slate-600 leading-relaxed mb-5">
-            Created freehand analytical diagrams to communicate circulation, parti, and hierarchy concepts, along with a revised full-size study model.
-          </p>
-          <p class="text-xs uppercase tracking-[0.2em] text-slate-400">ARCH 200</p>
+          <div class="work-card__info">
+            <span class="work-card__num">03</span>
+            <h3 class="work-card__title">Riverwalk</h3>
+            <span class="work-card__course">ARCH 400</span>
+          </div>
         </article>
-      </div>
-    </div>
-  </section>
 
-  <!-- EXPERIENCE -->
-  <section id="experience" class="py-24 px-6 bg-stone-50">
-    <div class="max-w-6xl mx-auto fade-in">
-      <p class="uppercase tracking-[0.3em] text-xs text-slate-500 mb-3">Experience</p>
-      <h2 class="text-3xl md:text-4xl font-bold mb-10">Work experience</h2>
-
-      <div class="space-y-6">
-        <div class="bg-white rounded-2xl border border-stone-200 p-7 shadow-sm">
-          <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-3 mb-3">
-            <div>
-              <h3 class="text-xl font-bold">Student Server</h3>
-              <p class="text-slate-600">Erickson – Riderwood | Silver Spring, MD</p>
+        <article class="work-card slide-right" data-modal="3" data-title="Lightbox Syntax" data-course="ARCH 400"
+          data-tag="Spatial Projection" data-img="assets/web_Lightbox Syntax.jpg"
+          data-extra-imgs="assets/Lightbox Syntax/LightboxSyntax_Plan_sections.jpg,assets/Lightbox Syntax/LightboxSyntax_Diagram.jpg,assets/Lightbox Syntax/LightboxSyntax_concept.jpg"
+          data-desc="The design is grounded in the concept of spatial projection, utilizing light and extension as primary architectural drivers. Due to neighboring structures limiting exposure on the East and West, natural light is strategically harvested through intentional ground-level and roof apertures. Drawing inspiration from Le Corbusier’s Ozenfant House, the project integrates human scale fenestration designed to carefully frame natural light and exterior views. Along the Southern facade, a series of water facing public spaces establishes a clear spatial hierarchy, fostering a deep visual relationship with the surrounding environment. The formal progression transitions from intimate, enclosed interior spaces to a shaded threshold. This &quot;buffer zone&quot; enhances the building’s approachability while strengthening the connection between internal activities and the public realm."
+          aria-label="View Lightbox Syntax project" role="button" tabindex="0">
+          <div class="work-card__img-wrap">
+            <img src="assets/web_Lightbox Syntax.jpg" alt="Lightbox Syntax" class="work-card__img" loading="lazy" />
+            <div class="work-card__overlay" aria-hidden="true">
+              <span class="work-card__arrow" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+                  <path d="M5 17L17 5M17 5H7M17 5V15" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </svg>
+              </span>
             </div>
-            <p class="text-sm text-slate-500">06/2023 – Current</p>
           </div>
-          <p class="text-slate-600">
-            Provided high-quality dining service and managed payment transactions for senior residents.
-          </p>
-        </div>
+          <div class="work-card__info">
+            <span class="work-card__num">04</span>
+            <h3 class="work-card__title">Lightbox Syntax</h3>
+            <span class="work-card__course">ARCH 400</span>
+          </div>
+        </article>
 
-        <div class="bg-white rounded-2xl border border-stone-200 p-7 shadow-sm">
-          <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-3 mb-3">
-            <div>
-              <h3 class="text-xl font-bold">Class Teacher</h3>
-              <p class="text-slate-600">Rock Creek Christian Academy School</p>
+      </div><!-- /.work__grid -->
+    </div>
+  </section>
+
+  <!-- ─── ART WORKS ─── -->
+  <section class="work section" id="art" aria-label="Art works">
+    <div class="container">
+      <div class="work__intro">
+        <span class="label reveal-left">Creative Expression</span>
+        <h2 class="section-title reveal-left" style="--delay:0.08s">
+          Artistic<br /><em>works.</em>
+        </h2>
+      </div>
+
+      <div class="work__grid">
+
+        <!-- Card 05 -->
+        <article class="work-card slide-left" data-modal="4" data-title="Between Realms" data-course="Fine Art"
+          data-tag="Illustration" data-img="assets/Art Works/Between Realms.jpg"
+          data-desc="An exploration of transitional spaces and the boundary between reality and imagination."
+          aria-label="View Between Realms artwork" role="button" tabindex="0">
+          <div class="work-card__img-wrap">
+            <img src="assets/Art Works/Between Realms.jpg" alt="Between Realms" class="work-card__img" loading="lazy" />
+            <div class="work-card__overlay" aria-hidden="true">
+              <span class="work-card__arrow" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+                  <path d="M5 17L17 5M17 5H7M17 5V15" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </svg>
+              </span>
             </div>
-            <p class="text-sm text-slate-500">09/2022 – 05/2023</p>
           </div>
-          <p class="text-slate-600">
-            Provided individualized instruction and managed classroom operations.
-          </p>
-        </div>
+          <div class="work-card__info">
+            <span class="work-card__num">05</span>
+            <h3 class="work-card__title">Between Realms</h3>
+            <span class="work-card__course">Fine Art</span>
+          </div>
+        </article>
 
-        <div class="bg-white rounded-2xl border border-stone-200 p-7 shadow-sm">
-          <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-3 mb-3">
-            <div>
-              <h3 class="text-xl font-bold">Associate</h3>
-              <p class="text-slate-600">Humanities/Academic Success Center, Montgomery College</p>
+        <!-- Card 06 -->
+        <article class="work-card slide-right" data-modal="5" data-title="Inner Scream" data-course="Fine Art"
+          data-tag="Expressionism" data-img="assets/Art Works/Inner Scream.jpg"
+          data-desc="A visceral representation of internal emotion and the human condition."
+          aria-label="View Inner Scream artwork" role="button" tabindex="0">
+          <div class="work-card__img-wrap">
+            <img src="assets/Art Works/Inner Scream.jpg" alt="Inner Scream" class="work-card__img" loading="lazy" />
+            <div class="work-card__overlay" aria-hidden="true">
+              <span class="work-card__arrow" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+                  <path d="M5 17L17 5M17 5H7M17 5V15" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </svg>
+              </span>
             </div>
-            <p class="text-sm text-slate-500">01/2019 – 01/2022</p>
           </div>
-          <p class="text-slate-600">
-            Supported academic operations through the Federal Work-Study program.
-          </p>
+          <div class="work-card__info">
+            <span class="work-card__num">06</span>
+            <h3 class="work-card__title">Inner Scream</h3>
+            <span class="work-card__course">Fine Art</span>
+          </div>
+        </article>
+
+        <!-- Card 07 -->
+        <article class="work-card slide-left" data-modal="6" data-title="Mother Nature" data-course="Fine Art"
+          data-tag="Illustration" data-img="assets/Art Works/Mother Nature.jpg"
+          data-desc="A tribute to the organic forms and the nurturing power of the natural world."
+          aria-label="View Mother Nature artwork" role="button" tabindex="0">
+          <div class="work-card__img-wrap">
+            <img src="assets/Art Works/Mother Nature.jpg" alt="Mother Nature" class="work-card__img" loading="lazy" />
+            <div class="work-card__overlay" aria-hidden="true">
+              <span class="work-card__arrow" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+                  <path d="M5 17L17 5M17 5H7M17 5V15" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </svg>
+              </span>
+            </div>
+          </div>
+          <div class="work-card__info">
+            <span class="work-card__num">07</span>
+            <h3 class="work-card__title">Mother Nature</h3>
+            <span class="work-card__course">Fine Art</span>
+          </div>
+        </article>
+
+        <!-- Card 08 -->
+        <article class="work-card slide-right" data-modal="7" data-title="Still life" data-course="Fine Art"
+          data-tag="Study" data-img="assets/Art Works/Still life.jpg"
+          data-desc="A study of light, shadow, and form through the arrangement of everyday objects."
+          aria-label="View Still life artwork" role="button" tabindex="0">
+          <div class="work-card__img-wrap">
+            <img src="assets/Art Works/Still life.jpg" alt="Still life" class="work-card__img" loading="lazy" />
+            <div class="work-card__overlay" aria-hidden="true">
+              <span class="work-card__arrow" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+                  <path d="M5 17L17 5M17 5H7M17 5V15" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </svg>
+              </span>
+            </div>
+          </div>
+          <div class="work-card__info">
+            <span class="work-card__num">08</span>
+            <h3 class="work-card__title">Still life</h3>
+            <span class="work-card__course">Fine Art</span>
+          </div>
+        </article>
+
+        <!-- Card 09 -->
+        <article class="work-card slide-left" data-modal="8" data-title="Unwanted World" data-course="Fine Art"
+          data-tag="Expressionism" data-img="assets/Art Works/Unwanted World.jpg"
+          data-desc="A reflection on environmental decay and the spaces we neglect."
+          aria-label="View Unwanted World artwork" role="button" tabindex="0">
+          <div class="work-card__img-wrap">
+            <img src="assets/Art Works/Unwanted World.jpg" alt="Unwanted World" class="work-card__img" loading="lazy" />
+            <div class="work-card__overlay" aria-hidden="true">
+              <span class="work-card__arrow" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+                  <path d="M5 17L17 5M17 5H7M17 5V15" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </svg>
+              </span>
+            </div>
+          </div>
+          <div class="work-card__info">
+            <span class="work-card__num">09</span>
+            <h3 class="work-card__title">Unwanted World</h3>
+            <span class="work-card__course">Fine Art</span>
+          </div>
+        </article>
+
+      </div><!-- /.work__grid -->
+    </div>
+  </section>
+
+  <!-- ─── PROJECT MODAL ─── -->
+  <div class="modal" id="projectModal" aria-modal="true" role="dialog" aria-label="Project detail" aria-hidden="true">
+    <div class="modal__backdrop" id="modalBackdrop"></div>
+    <div class="modal__panel">
+      <button class="modal__close" id="modalClose" aria-label="Close project detail">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+          <path d="M4 4L16 16M16 4L4 16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+        </svg>
+      </button>
+
+      <div class="modal__img-wrap">
+        <img id="modalImg" src="" alt="" class="modal__img" />
+      </div>
+
+      <div class="modal__body">
+        <div class="modal__meta">
+          <span class="modal__tag" id="modalTag"></span>
+          <span class="modal__course" id="modalCourse"></span>
+        </div>
+        <h2 class="modal__title" id="modalTitle"></h2>
+        <p class="modal__desc" id="modalDesc"></p>
+        <div class="modal__thumbnails" id="modalThumbnails"></div>
+
+        <div class="modal__nav">
+          <button class="modal__nav-btn" id="modalPrev" aria-label="Previous project">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M10 3L5 8L10 13" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+            Prev
+          </button>
+          <span class="modal__counter" id="modalCounter">1 / 5</span>
+          <button class="modal__nav-btn modal__nav-btn--next" id="modalNext" aria-label="Next project">
+            Next
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M6 3L11 8L6 13" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div><!-- /.modal -->
+
+  <!-- ─── EDUCATION ─── -->
+  <section class="edu section" id="education" aria-label="Education">
+    <div class="container">
+      <span class="label reveal-left">Education</span>
+      <h2 class="section-title reveal-left" style="--delay:0.08s">Academic<br /><em>background.</em></h2>
+
+      <div class="edu__grid">
+        <div class="edu__card reveal-up" style="--delay:0.1s">
+          <div class="edu__card-inner">
+            <span class="edu__year">2023 – 2026</span>
+            <h3 class="edu__degree">B.A. Architectural Studies</h3>
+            <p class="edu__school">University of Maryland, College Park</p>
+          </div>
+          <div class="edu__badge" aria-hidden="true">UMD</div>
+        </div>
+
+        <div class="edu__card reveal-up" style="--delay:0.2s">
+          <div class="edu__card-inner">
+            <span class="edu__year">2019 – 2023</span>
+            <h3 class="edu__degree">A.A. Art, Architectural Technology</h3>
+            <p class="edu__school">Montgomery College, Takoma Park, MD</p>
+          </div>
+          <div class="edu__badge" aria-hidden="true">MC</div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- SKILLS -->
-  <section id="skills" class="py-24 px-6 bg-white">
-    <div class="max-w-6xl mx-auto fade-in">
-      <p class="uppercase tracking-[0.3em] text-xs text-slate-500 mb-3">Skills</p>
-      <h2 class="text-3xl md:text-4xl font-bold mb-10">Tools and strengths</h2>
+  <!-- ─── SKILLS ─── -->
+  <section class="skills section" id="skills" aria-label="Skills">
+    <div class="container">
+      <span class="label reveal-left">Toolkit</span>
+      <h2 class="section-title reveal-left" style="--delay:0.08s">Tools &amp;<br /><em>strengths.</em></h2>
 
-      <div class="grid md:grid-cols-2 gap-8">
-        <div class="bg-stone-50 rounded-2xl border border-stone-200 p-8">
-          <h3 class="font-bold text-lg mb-5">Technical proficiency</h3>
-          <div class="flex flex-wrap gap-3">
-            <span class="px-3 py-2 bg-white rounded-full border border-stone-200 text-sm">Rhino</span>
-            <span class="px-3 py-2 bg-white rounded-full border border-stone-200 text-sm">SketchUp</span>
-            <span class="px-3 py-2 bg-white rounded-full border border-stone-200 text-sm">Revit</span>
-            <span class="px-3 py-2 bg-white rounded-full border border-stone-200 text-sm">AutoCAD</span>
-            <span class="px-3 py-2 bg-white rounded-full border border-stone-200 text-sm">Adobe Creative Suite</span>
-            <span class="px-3 py-2 bg-white rounded-full border border-stone-200 text-sm">Twinmotion</span>
-            <span class="px-3 py-2 bg-white rounded-full border border-stone-200 text-sm">Lumion</span>
-            <span class="px-3 py-2 bg-white rounded-full border border-stone-200 text-sm">Hand Drafting</span>
-            <span class="px-3 py-2 bg-white rounded-full border border-stone-200 text-sm">Creative Drawing</span>
-          </div>
+      <div class="skills__grid">
+        <div class="skills__col reveal-up" style="--delay:0.1s">
+          <h3 class="skills__col-title">Software</h3>
+          <ul class="skills__list" role="list">
+            <li class="pill">Rhino</li>
+            <li class="pill">SketchUp</li>
+            <li class="pill">Revit</li>
+            <li class="pill">AutoCAD</li>
+            <li class="pill">Twinmotion</li>
+            <li class="pill">Lumion</li>
+            <li class="pill">Adobe Suite</li>
+          </ul>
         </div>
 
-        <div class="bg-stone-50 rounded-2xl border border-stone-200 p-8">
-          <h3 class="font-bold text-lg mb-5">Professional strengths</h3>
-          <div class="flex flex-wrap gap-3">
-            <span class="px-3 py-2 bg-white rounded-full border border-stone-200 text-sm">Time Management</span>
-            <span class="px-3 py-2 bg-white rounded-full border border-stone-200 text-sm">Adaptability</span>
-            <span class="px-3 py-2 bg-white rounded-full border border-stone-200 text-sm">Project Management</span>
-            <span class="px-3 py-2 bg-white rounded-full border border-stone-200 text-sm">Academic Writing</span>
-            <span class="px-3 py-2 bg-white rounded-full border border-stone-200 text-sm">Research</span>
-            <span class="px-3 py-2 bg-white rounded-full border border-stone-200 text-sm">Critical Thinking</span>
-          </div>
+        <div class="skills__col reveal-up" style="--delay:0.18s">
+          <h3 class="skills__col-title">Craft</h3>
+          <ul class="skills__list" role="list">
+            <li class="pill">Hand Drafting</li>
+            <li class="pill">Creative Drawing</li>
+            <li class="pill">3D Modeling</li>
+            <li class="pill">Physical Models</li>
+            <li class="pill">Site Analysis</li>
+          </ul>
         </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- EXHIBITIONS -->
-  <section class="py-24 px-6 bg-stone-50">
-    <div class="max-w-6xl mx-auto fade-in">
-      <p class="uppercase tracking-[0.3em] text-xs text-slate-500 mb-3">Art & Exhibitions</p>
-      <h2 class="text-3xl md:text-4xl font-bold mb-10">Creative work</h2>
-
-      <div class="bg-white rounded-2xl border border-stone-200 p-8 shadow-sm">
-        <div class="grid md:grid-cols-2 gap-4 text-slate-600">
-          <p>5th Tone International Miniature Art Biennale 2015</p>
-          <p>A Thousand Tales</p>
-          <p>A Thousand Tales: Second Group</p>
-          <p>A Thousand Tales: Third Group</p>
-          <p>Art for Cause</p>
-          <p>Portfolio</p>
+        <div class="skills__col reveal-up" style="--delay:0.26s">
+          <h3 class="skills__col-title">Professional</h3>
+          <ul class="skills__list" role="list">
+            <li class="pill">Time Management</li>
+            <li class="pill">Adaptability</li>
+            <li class="pill">Project Management</li>
+            <li class="pill">Academic Writing</li>
+            <li class="pill">Research</li>
+            <li class="pill">Critical Thinking</li>
+          </ul>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- CONTACT -->
-  <section id="contact" class="py-24 px-6 bg-slate-900 text-white">
-    <div class="max-w-5xl mx-auto text-center fade-in">
-      <p class="uppercase tracking-[0.3em] text-xs text-slate-400 mb-3">Contact</p>
-      <h2 class="text-4xl md:text-5xl font-bold mb-6">Let’s connect.</h2>
-      <p class="text-slate-400 text-lg md:text-xl mb-10 max-w-2xl mx-auto">
-        I’m interested in learning, growing, and contributing to thoughtful design work.
-        Feel free to reach out.
+  <!-- ─── EXHIBITIONS ─── -->
+  <section class="exhibitions section" id="exhibitions" aria-label="Exhibitions">
+    <div class="container">
+      <span class="label reveal-left">Art &amp; Exhibitions</span>
+      <h2 class="section-title reveal-left" style="--delay:0.08s">Creative<br /><em>recognition.</em></h2>
+
+      <ul class="exhibitions__list reveal-up" style="--delay:0.12s" role="list">
+        <li class="exhibitions__item">
+          <span class="exhibitions__dot" aria-hidden="true"></span>
+          <span>5th Tone International Miniature Art Biennale 2015</span>
+        </li>
+        <li class="exhibitions__item">
+          <span class="exhibitions__dot" aria-hidden="true"></span>
+          <span>A Thousand Tales</span>
+        </li>
+        <li class="exhibitions__item">
+          <span class="exhibitions__dot" aria-hidden="true"></span>
+          <span>A Thousand Tales: Second Group</span>
+        </li>
+        <li class="exhibitions__item">
+          <span class="exhibitions__dot" aria-hidden="true"></span>
+          <span>A Thousand Tales: Third Group</span>
+        </li>
+        <li class="exhibitions__item">
+          <span class="exhibitions__dot" aria-hidden="true"></span>
+          <span>Art for Cause</span>
+        </li>
+        <li class="exhibitions__item">
+          <span class="exhibitions__dot" aria-hidden="true"></span>
+          <span>Portfolio Exhibition</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ─── CONTACT ─── -->
+  <section class="contact" id="contact" aria-label="Contact">
+    <div class="contact__bg" aria-hidden="true"></div>
+    <div class="container contact__inner">
+      <span class="label label--light reveal-up">Contact</span>
+      <h2 class="section-title section-title--light reveal-up" style="--delay:0.08s">
+        Let's build<br /><em>something.</em>
+      </h2>
+      <p class="contact__sub reveal-up" style="--delay:0.16s">
+        I'm interested in learning, growing, and contributing to thoughtful design work. Feel free to reach out.
       </p>
 
-      <div class="flex flex-col items-center gap-5 mb-10">
-        <a
-          href="mailto:egomes13@terpmail.umd.edu"
-          class="inline-flex items-center gap-3 text-lg hover:text-stone-200 transition-colors"
-        >
-          <div class="w-12 h-12 rounded-full border border-slate-700 flex items-center justify-center">
-            <i data-lucide="mail" class="w-5 h-5"></i>
-          </div>
+      <div class="contact__links reveal-up" style="--delay:0.24s">
+        <a href="mailto:egomes13@terpmail.umd.edu" class="contact__link" id="contactEmail"
+          aria-label="Email Emma Gomes">
+          <span class="contact__link-icon" aria-hidden="true">
+            <svg viewBox="0 0 20 20" fill="none" width="20" height="20" aria-hidden="true">
+              <path d="M2 5.5L10 11L18 5.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+              <rect x="2" y="4" width="16" height="12" rx="2" stroke="currentColor" stroke-width="1.5" />
+            </svg>
+          </span>
           egomes13@terpmail.umd.edu
         </a>
 
-        <a
-          href="tel:+12407191039"
-          class="inline-flex items-center gap-3 text-lg hover:text-stone-200 transition-colors"
-        >
-          <div class="w-12 h-12 rounded-full border border-slate-700 flex items-center justify-center">
-            <i data-lucide="phone" class="w-5 h-5"></i>
-          </div>
+        <a href="tel:+12407191039" class="contact__link" id="contactPhone" aria-label="Call Emma Gomes">
+          <span class="contact__link-icon" aria-hidden="true">
+            <svg viewBox="0 0 20 20" fill="none" width="20" height="20" aria-hidden="true">
+              <path
+                d="M4 3h3l1.5 4L7 8.5a11 11 0 0 0 4.5 4.5L13 11.5l4 1.5v3a1 1 0 0 1-1 1A15 15 0 0 1 3 4a1 1 0 0 1 1-1z"
+                stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </span>
           (240) 719-1039
         </a>
-      </div>
 
-      <div class="flex justify-center gap-6">
-        <a 
-        href="https://github.com/emmagomes95"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="GitHub profile"
-        title="GitHub profile"
-        >
-          <i data-lucide="github" class="w-5 h-5"></i>
-        </a>
-
-        <a
-          href="#"
-          aria-label="LinkedIn profile"
-          title="LinkedIn profile"
-          class="w-12 h-12 rounded-full border border-slate-700 flex items-center justify-center hover:bg-white hover:text-slate-900 transition-all"
-        >
-          <i data-lucide="linkedin" class="w-5 h-5"></i>
+        <a href="https://github.com/emmagomes95" target="_blank" rel="noopener noreferrer" class="contact__link"
+          id="contactGithub" aria-label="Emma Gomes GitHub profile">
+          <span class="contact__link-icon" aria-hidden="true">
+            <svg viewBox="0 0 20 20" fill="none" width="20" height="20" aria-hidden="true">
+              <path
+                d="M10 2a8 8 0 0 0-2.53 15.59c.4.07.55-.17.55-.38v-1.33C5.67 16.3 5.18 14.9 5.18 14.9c-.36-.92-.88-1.17-.88-1.17-.72-.49.05-.48.05-.48.8.06 1.22.82 1.22.82.71 1.22 1.87.87 2.33.66.07-.52.28-.87.5-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82A7.64 7.64 0 0 1 10 5.9c.68 0 1.36.09 2 .27 1.52-1.03 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.28.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48v2.19c0 .21.15.46.55.38A8 8 0 0 0 10 2z"
+                fill="currentColor" />
+            </svg>
+          </span>
+          github.com/emmagomes95
         </a>
       </div>
     </div>
   </section>
 
-  <!-- FOOTER -->
-  <footer class="py-10 px-6 border-t border-stone-200 bg-white">
-    <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-slate-500">
-      <p>© 2026 Emma Gomes. All rights reserved.</p>
-      <div class="flex gap-6">
-        <a href="#about" class="hover:text-slate-900 transition-colors">About</a>
-        <a href="#projects" class="hover:text-slate-900 transition-colors">Projects</a>
-        <a href="#contact" class="hover:text-slate-900 transition-colors">Contact</a>
-      </div>
+  <!-- ─── FOOTER ─── -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <p class="footer__copy">© 2026 Emma Gomes. All rights reserved.</p>
+      <nav class="footer__nav" aria-label="Footer navigation">
+        <a href="#about">About</a>
+        <a href="#work">Work</a>
+        <a href="#contact">Contact</a>
+      </nav>
     </div>
   </footer>
 
-  <script>
-    lucide.createIcons();
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    }, { threshold: 0.1 });
-
-    document.querySelectorAll('.fade-in').forEach((el) => {
-      observer.observe(el);
-    });
-
-    setTimeout(() => {
-      const hero = document.getElementById('hero-content');
-      if (hero) hero.classList.add('visible');
-    }, 100);
-  </script>
+  <script src="script.js"></script>
 </body>
+
 </html>
