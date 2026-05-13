@@ -162,12 +162,12 @@ function populateModal(idx) {
     imgContainer.innerHTML = '';
     const thumbContainer = document.getElementById('modalThumbnails');
     if (thumbContainer) thumbContainer.innerHTML = '';
-    
+
     const allImgs = [p.img];
     if (p.extraImgs && p.extraImgs.length > 0) {
       allImgs.push(...p.extraImgs);
     }
-    
+
     let currentPhotoIdx = 0;
 
     const mainImg = document.createElement('img');
@@ -176,7 +176,7 @@ function populateModal(idx) {
     mainImg.className = 'modal__img';
     mainImg.style.transition = 'opacity 0.25s ease-in-out';
     imgContainer.appendChild(mainImg);
-    
+
     function updateMainImage(idx) {
       currentPhotoIdx = idx;
       mainImg.style.opacity = '0';
@@ -184,7 +184,7 @@ function populateModal(idx) {
         mainImg.src = allImgs[currentPhotoIdx];
         mainImg.style.opacity = '1';
       }, 150);
-      
+
       if (thumbContainer) {
         Array.from(thumbContainer.children).forEach((thumb, i) => {
           if (i === currentPhotoIdx) thumb.classList.add('active');
@@ -198,7 +198,7 @@ function populateModal(idx) {
       prevBtn.className = 'modal__carousel-btn modal__carousel-prev';
       prevBtn.setAttribute('aria-label', 'Previous photo');
       prevBtn.innerHTML = '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M15 18l-6-6 6-6"/></svg>';
-      
+
       const nextBtn = document.createElement('button');
       nextBtn.className = 'modal__carousel-btn modal__carousel-next';
       nextBtn.setAttribute('aria-label', 'Next photo');
@@ -216,7 +216,7 @@ function populateModal(idx) {
 
       imgContainer.appendChild(prevBtn);
       imgContainer.appendChild(nextBtn);
-      
+
       if (thumbContainer) {
         allImgs.forEach((src, idx) => {
           const thumb = document.createElement('img');
@@ -246,25 +246,16 @@ function populateModal(idx) {
   modalNext.style.opacity = idx === projectData.length - 1 ? '0.35' : '1';
 }
 
-// ── EVENT DELEGATION on the grid (works even before reveal animation) ──
-const workGrid = document.getElementById('workGrid');
-if (workGrid) {
-  workGrid.addEventListener('click', e => {
-    const card = e.target.closest('.work-card');
-    if (!card) return;
-    const idx = Array.from(workCards).indexOf(card);
-    if (idx !== -1) openModal(idx);
+// ── EVENT LISTENERS on all work cards ──
+workCards.forEach((card, idx) => {
+  card.addEventListener('click', () => openModal(idx));
+  card.addEventListener('keydown', e => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      openModal(idx);
+    }
   });
-
-  workGrid.addEventListener('keydown', e => {
-    if (e.key !== 'Enter' && e.key !== ' ') return;
-    const card = e.target.closest('.work-card');
-    if (!card) return;
-    e.preventDefault();
-    const idx = Array.from(workCards).indexOf(card);
-    if (idx !== -1) openModal(idx);
-  });
-}
+});
 
 // Close
 modalClose.addEventListener('click', closeModal);
